@@ -6,4 +6,5 @@ export class Job {
     categoria_id?: number;
     nombre: string;
     descripcion: string;
+    categorium?: object;
 }

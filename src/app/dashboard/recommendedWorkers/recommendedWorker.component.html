@@ -47,20 +47,8 @@
                 </div>
             </div>
             <ul>
-                <li>
-                    <app-worker></app-worker>
-                </li>
-                <li>
-                    <app-worker></app-worker>
-                </li>
-                <li>
-                    <app-worker></app-worker>
-                </li>
-                <li>
-                    <app-worker></app-worker>
-                </li>
-                <li>
-                    <app-worker></app-worker>
+                <li *ngFor="let worker of listRecommendeds">
+                    <app-worker [worker]="worker"></app-worker>
                 </li>
             </ul>
         </div>

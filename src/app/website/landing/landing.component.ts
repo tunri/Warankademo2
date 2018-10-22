@@ -3,7 +3,8 @@ import {DistrictService} from '@app/core/services';
 import {District, Job} from '@app/core/models';
 import {NgForm} from '@angular/forms';
 import {JobsService} from '@app/core/services/jobs.service';
-import {query} from '@angular/animations';
+
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -24,7 +25,9 @@ export class LandingComponent implements OnInit {
 
     constructor(
         private districtService: DistrictService,
-        private jobService: JobsService) {
+        private jobService: JobsService,
+        private  router: Router
+    ) {
     }
 
     ngOnInit() {
@@ -49,17 +52,24 @@ export class LandingComponent implements OnInit {
         this[listfilter] = this.filter(newvalue, list);
     }
 
-
-    displayFn(item?: Job | District): string {
-        return item ? item.nombre : undefined;
+    onSearch(form: NgForm) {
+        const auth = true;
+        if (auth) {
+            this.router.navigate(['/recommended-workers'], {
+                queryParams: this.getQueryParams(form.value)
+            });
+        } else {
+            console.log(form.value);
+        }
     }
 
-    onSearch(form: NgForm) {
-        const auth = false;
-        if (auth) {
-            console.log('logged');
-        } else {
-            console.log('nologged');
+    private getQueryParams(queries) {
+        const querysParams = {};
+        for (const prop in queries) {
+            if (queries[prop] && queries[prop].trim().length) {
+                querysParams[prop] = queries[prop].trim();
+            }
         }
+        return querysParams;
     }
 }

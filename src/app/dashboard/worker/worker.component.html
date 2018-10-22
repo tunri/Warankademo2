@@ -1,4 +1,4 @@
-<section class="c-worker">
+<section class="c-worker" *ngIf="worker.usuario_perfil_id">
     <div class="c-worker__wrapper">
         <h3 class="c-worker__title">
             <span class="title__office">Creative Frontend Developer</span>
@@ -8,7 +8,7 @@
             <ul>
                 <li class="metainfo-place">
                     <mat-icon>place</mat-icon>
-                    <span>London, UK</span>
+                    <span>{{worker.distrito.nombre}}</span>
                 </li>
                 <li class="metainfo-time">
                     <mat-icon>access_time</mat-icon>
@@ -30,13 +30,7 @@
         <div class="c-worker__footer">
             <div class="c-worker__tags">
                 <span class="c-tag">
-                    Ingeniero
-                </span>
-                <span class="c-tag">
-                    Mecanico
-                </span>
-                <span class="c-tag">
-                    Caripentero
+                    {{worker.oficio.nombre}}
                 </span>
             </div>
             <div>
@@ -44,6 +38,31 @@
                     ver perfil
                 </button>
             </div>
+        </div>
+    </div>
+</section>
+<section class="c-worker c-worker-skeleton" *ngIf="!worker.usuario_perfil_id">
+    <div class="c-worker__wrapper">
+        <h3 class="c-worker__title skeleton__bone-skin skeleton__bone-skin-full bone-h-md"></h3>
+        <div class="c-worker__metainfo">
+            <ul>
+                <li class="metainfo-place">
+                    <div class="skeleton__bone-skin"></div>
+                </li>
+                <li class="metainfo-time">
+                    <div class="skeleton__bone-skin"></div>
+                </li>
+                <li class="metainfo-money">
+                    <div class="skeleton__bone-skin"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="c-worker__description">
+            <div class="skeleton__bone-skin skeleton__bone-skin-full bone-h-xl"></div>
+        </div>
+        <div class="c-worker__footer">
+            <div class="skeleton__bone-skin bone-h-md"></div>
+            <div class="skeleton__bone-skin bone-h-md"></div>
         </div>
     </div>
 </section>

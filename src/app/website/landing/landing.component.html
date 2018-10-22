@@ -24,8 +24,8 @@
                                [matAutocomplete]="autoOficio"
                                (ngModelChange)="onChange($event,jobs,'filterJobs')"
                         >
-                        <mat-autocomplete #autoOficio="matAutocomplete" [displayWith]="displayFn">
-                            <mat-option *ngFor="let job of filterJobs" [value]="job">
+                        <mat-autocomplete #autoOficio="matAutocomplete">
+                            <mat-option *ngFor="let job of filterJobs" [value]="job.nombre">
                                 {{job.nombre}}
                             </mat-option>
                         </mat-autocomplete>
@@ -38,8 +38,8 @@
                                [matAutocomplete]="autoDistrict"
                                (ngModelChange)="onChange($event,districts,'filterDistricts')"
                         >
-                        <mat-autocomplete #autoDistrict="matAutocomplete" [displayWith]="displayFn">
-                            <mat-option *ngFor="let district of filterDistricts" [value]="district">
+                        <mat-autocomplete #autoDistrict="matAutocomplete">
+                            <mat-option *ngFor="let district of filterDistricts" [value]="district.nombre">
                                 {{district.nombre}}
                             </mat-option>
                         </mat-autocomplete>
