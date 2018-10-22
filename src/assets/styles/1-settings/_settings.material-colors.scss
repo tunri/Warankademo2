@@ -1,0 +1,330 @@
+/**
+ * COLOR MATERIAL @RED
+ */
+$red-material             : #F44336;
+$red-material-50          : #FFEbEE;
+$red-material-100         : #FFCDD2;
+$red-material-200         : #EF9A9A;
+$red-material-300         : #E57373;
+$red-material-400         : #EF5350;
+$red-material-500         : #F44336;
+$red-material-600         : #E53935;
+$red-material-700         : #D32F2F;
+$red-material-800         : #C62828;
+$red-material-900         : #B71C1C;
+$red-material-A100        : #FF8A80;
+$red-material-A200        : #FF5252;
+$red-material-A400        : #FF1744;
+$red-material-A700        : #D50000;
+/**
+ * COLOR MATERIAL @PINK
+ */
+$pink-material            : #E91E63;
+$pink-material-50         : #FCE4EC;
+$pink-material-100        : #F8BBD0;
+$pink-material-200        : #F48FB1;
+$pink-material-300        : #F06292;
+$pink-material-400        : #EC407A;
+$pink-material-500        : #E91E63;
+$pink-material-600        : #D81B60;
+$pink-material-700        : #C2185B;
+$pink-material-800        : #AD1457;
+$pink-material-900        : #880E4F;
+$pink-material-A100       : #FF80AB;
+$pink-material-A200       : #FF4081;
+$pink-material-A400       : #F50057;
+$pink-material-A700       : #C51162;
+/**
+ * COLOR MATERIAL @PURPLE
+ */
+$purple-material          : #9C27B0;
+$purple-material-50       : #F3E5F5;
+$purple-material-100      : #E1BEE7;
+$purple-material-200      : #CE93D8;
+$purple-material-300      : #BA68C8;
+$purple-material-400      : #AB47BC;
+$purple-material-500      : #9C27B0;
+$purple-material-600      : #8E24AA;
+$purple-material-700      : #7B1FA2;
+$purple-material-800      : #6A1B9A;
+$purple-material-900      : #4A148C;
+$purple-material-A100     : #EA80FC;
+$purple-material-A200     : #E040FB;
+$purple-material-A400     : #D500F9;
+$purple-material-A700     : #AA00FF;
+/**
+ * COLOR MATERIAL @DEEP-PURPLE
+ */
+$deep-purple-material     : #673AB7;
+$deep-purple-material-50  : #EDE7F6;
+$deep-purple-material-100 : #D1C4E9;
+$deep-purple-material-200 : #B39DDB;
+$deep-purple-material-300 : #9575CD;
+$deep-purple-material-400 : #7E57C2;
+$deep-purple-material-500 : #673AB7;
+$deep-purple-material-600 : #5E35B1;
+$deep-purple-material-700 : #512DA8;
+$deep-purple-material-800 : #4527A0;
+$deep-purple-material-900 : #311B92;
+$deep-purple-material-A100: #B388FF;
+$deep-purple-material-A200: #7C4DFF;
+$deep-purple-material-A400: #651FFF;
+$deep-purple-material-A700: #6200EA;
+/**
+ * COLOR MATERIAL @INDIGO
+ */
+$indigo-material          : #3F51B5;
+$indigo-material-50       : #E8EAF6;
+$indigo-material-100      : #C5CAE9;
+$indigo-material-200      : #9FA8DA;
+$indigo-material-300      : #7986CB;
+$indigo-material-400      : #5C6BC0;
+$indigo-material-500      : #3F51B5;
+$indigo-material-600      : #3949AB;
+$indigo-material-700      : #303F9F;
+$indigo-material-800      : #283593;
+$indigo-material-900      : #1A237E;
+$indigo-material-A100     : #8C9EFF;
+$indigo-material-A200     : #536DFE;
+$indigo-material-A400     : #3D5AFE;
+$indigo-material-A700     : #304FFE;
+/**
+ * COLOR MATERIAL @BLUE
+ */
+$blue-material            : #2196F3;
+$blue-material-50         : #E3F2FD;
+$blue-material-100        : #BBDEFB;
+$blue-material-200        : #90CAF9;
+$blue-material-300        : #64B5F6;
+$blue-material-400        : #42A5F5;
+$blue-material-500        : #2196F3;
+$blue-material-600        : #1E88E5;
+$blue-material-700        : #1976D2;
+$blue-material-800        : #1565C0;
+$blue-material-900        : #0D47A1;
+$blue-material-A100       : #82B1FF;
+$blue-material-A200       : #448AFF;
+$blue-material-A400       : #2979FF;
+$blue-material-A700       : #2962FF;
+/**
+ * COLOR MATERIAL @LIGHT-BLUE
+ */
+$light-blue-material      : #03A9F4;
+$light-blue-material-50   : #E1F5FE;
+$light-blue-material-100  : #B3E5FC;
+$light-blue-material-200  : #81D4FA;
+$light-blue-material-300  : #4FC3F7;
+$light-blue-material-400  : #29B6F6;
+$light-blue-material-500  : #03A9F4;
+$light-blue-material-600  : #039BE5;
+$light-blue-material-700  : #0288D1;
+$light-blue-material-800  : #0277BD;
+$light-blue-material-900  : #01579B;
+$light-blue-material-A100 : #80D8FF;
+$light-blue-material-A200 : #40C4FF;
+$light-blue-material-A400 : #00B0FF;
+$light-blue-material-A700 : #0091EA;
+/**
+ * COLOR MATERIAL @CYAN
+ */
+$cyan-material            : #00BCD4;
+$cyan-material-50         : #E0F7FA;
+$cyan-material-100        : #B2EBF2;
+$cyan-material-200        : #80DEEA;
+$cyan-material-300        : #4DD0E1;
+$cyan-material-400        : #26C6DA;
+$cyan-material-500        : #00BCD4;
+$cyan-material-600        : #00ACC1;
+$cyan-material-700        : #0097A7;
+$cyan-material-800        : #00838F;
+$cyan-material-900        : #006064;
+$cyan-material-A100       : #84FFFF;
+$cyan-material-A200       : #18FFFF;
+$cyan-material-A400       : #00E5FF;
+$cyan-material-A700       : #00B8D4;
+/**
+ * COLOR MATERIAL @TEAL
+ */
+$teal-material            : #009688;
+$teal-material-50         : #E0F2F1;
+$teal-material-100        : #B2DFDB;
+$teal-material-200        : #80CBC4;
+$teal-material-300        : #4DB6AC;
+$teal-material-400        : #26A69A;
+$teal-material-500        : #009688;
+$teal-material-600        : #00897B;
+$teal-material-700        : #00796B;
+$teal-material-800        : #00695C;
+$teal-material-900        : #004D40;
+$teal-material-A100       : #A7FFEB;
+$teal-material-A200       : #64FFDA;
+$teal-material-A400       : #1DE9B6;
+$teal-material-A700       : #00BFA5;
+/**
+ * COLOR MATERIAL @GREEN
+ */
+$green-material           : #4CAF50;
+$green-material-50        : #E8F5E9;
+$green-material-100       : #C8E6C9;
+$green-material-200       : #A5D6A7;
+$green-material-300       : #81C784;
+$green-material-400       : #66BB6A;
+$green-material-500       : #4CAF50;
+$green-material-600       : #43A047;
+$green-material-700       : #388E3C;
+$green-material-800       : #2E7D32;
+$green-material-900       : #1B5E20;
+$green-material-A100      : #B9F6CA;
+$green-material-A200      : #69F0AE;
+$green-material-A400      : #00E676;
+$green-material-A700      : #00C853;
+/**
+ * COLOR MATERIAL @LIGHT-GREEN
+ */
+$light-green-material     : #8BC34A;
+$light-green-material-50  : #F1F8E9;
+$light-green-material-100 : #DCEDC8;
+$light-green-material-200 : #C5E1A5;
+$light-green-material-300 : #AED581;
+$light-green-material-400 : #9CCC65;
+$light-green-material-500 : #8BC34A;
+$light-green-material-600 : #7CB342;
+$light-green-material-700 : #689F38;
+$light-green-material-800 : #558B2F;
+$light-green-material-900 : #33691E;
+$light-green-material-A100: #CCFF90;
+$light-green-material-A200: #B2FF59;
+$light-green-material-A400: #76FF03;
+$light-green-material-A700: #64DD17;
+/**
+ * COLOR MATERIAL @LIME
+ */
+$lime-material            : #CDDC39;
+$lime-material-50         : #F9FBE7;
+$lime-material-100        : #F0F4C3;
+$lime-material-200        : #E6EE9C;
+$lime-material-300        : #DCE775;
+$lime-material-400        : #D4E157;
+$lime-material-500        : #CDDC39;
+$lime-material-600        : #C0CA33;
+$lime-material-700        : #AFB42B;
+$lime-material-800        : #9E9D24;
+$lime-material-900        : #827717;
+$lime-material-A100       : #F4FF81;
+$lime-material-A200       : #EEFF41;
+$lime-material-A400       : #C6FF00;
+$lime-material-A700       : #AEEA00;
+/**
+ * COLOR MATERIAL @YELLOW
+ */
+$yellow-material          : #FFEB3B;
+$yellow-material-50       : #FFFDE7;
+$yellow-material-100      : #FFF9C4;
+$yellow-material-200      : #FFF59D;
+$yellow-material-300      : #FFF176;
+$yellow-material-400      : #FFEE58;
+$yellow-material-500      : #FFEB3B;
+$yellow-material-600      : #FDD835;
+$yellow-material-700      : #FBC02D;
+$yellow-material-800      : #F9A825;
+$yellow-material-900      : #F57F17;
+$yellow-material-A100     : #FFFF8D;
+$yellow-material-A200     : #FFFF00;
+$yellow-material-A400     : #FFEA00;
+$yellow-material-A700     : #FFD600;
+/**
+ * COLOR MATERIAL @AMBER
+ */
+$amber-material           : #FFC107;
+$amber-material-50        : #FFF8E1;
+$amber-material-100       : #FFECB3;
+$amber-material-200       : #FFE082;
+$amber-material-300       : #FFD54F;
+$amber-material-400       : #FFCA28;
+$amber-material-500       : #FFC107;
+$amber-material-600       : #FFB300;
+$amber-material-700       : #FFA000;
+$amber-material-800       : #FF8F00;
+$amber-material-900       : #FF6F00;
+$amber-material-A100      : #FFE57F;
+$amber-material-A200      : #FFD740;
+$amber-material-A400      : #FFC400;
+$amber-material-A700      : #FFAB00;
+/**
+ * COLOR MATERIAL @ORANGE
+ */
+$orange-material          : #FF9800;
+$orange-material-50       : #FFF3E0;
+$orange-material-100      : #FFE0B2;
+$orange-material-200      : #FFCC80;
+$orange-material-300      : #FFB74D;
+$orange-material-400      : #FFA726;
+$orange-material-500      : #FF9800;
+$orange-material-600      : #FB8C00;
+$orange-material-700      : #F57C00;
+$orange-material-800      : #EF6C00;
+$orange-material-900      : #E65100;
+$orange-material-A100     : #FFD180;
+$orange-material-A200     : #FFAB40;
+$orange-material-A400     : #FF9100;
+$orange-material-A700     : #FF6D00;
+/**
+ * COLOR MATERIAL @DEEP-ORANGE
+ */
+$deep-orange-material     : #FF5722;
+$deep-orange-material-50  : #FBE9E7;
+$deep-orange-material-100 : #FFCCBC;
+$deep-orange-material-200 : #FFAB91;
+$deep-orange-material-300 : #FF8A65;
+$deep-orange-material-400 : #FF7043;
+$deep-orange-material-500 : #FF5722;
+$deep-orange-material-600 : #F4511E;
+$deep-orange-material-700 : #E64A19;
+$deep-orange-material-800 : #D84315;
+$deep-orange-material-900 : #BF360C;
+$deep-orange-material-A100: #FF9E80;
+$deep-orange-material-A200: #FF6E40;
+$deep-orange-material-A400: #FF3D00;
+$deep-orange-material-A700: #DD2C00;
+/**
+ * COLOR MATERIAL @BROWN
+ */
+$brown-material           : #795548;
+$brown-material-50        : #EFEBE9;
+$brown-material-100       : #D7CCC8;
+$brown-material-200       : #BCAAA4;
+$brown-material-300       : #A1887F;
+$brown-material-400       : #8D6E63;
+$brown-material-500       : #795548;
+$brown-material-600       : #6D4C41;
+$brown-material-700       : #5D4037;
+$brown-material-800       : #4E342E;
+$brown-material-900       : #3E2723;
+/**
+ * COLOR MATERIAL @GREY
+ */
+$grey-material            : #9E9E9E;
+$grey-material-50         : #FAFAFA;
+$grey-material-100        : #F5F5F5;
+$grey-material-200        : #EEEEEE;
+$grey-material-300        : #E0E0E0;
+$grey-material-400        : #BDBDBD;
+$grey-material-500        : #9E9E9E;
+$grey-material-600        : #757575;
+$grey-material-700        : #616161;
+$grey-material-800        : #424242;
+$grey-material-900        : #212121;
+/**
+ * COLOR MATERIAL @BLUE-GREY
+ */
+$blue-grey-material       : #607D8B;
+$blue-grey-material-50    : #ECEFF1;
+$blue-grey-material-100   : #CFD8DC;
+$blue-grey-material-200   : #B0BEC5;
+$blue-grey-material-300   : #90A4AE;
+$blue-grey-material-400   : #78909C;
+$blue-grey-material-500   : #607D8B;
+$blue-grey-material-600   : #546E7A;
+$blue-grey-material-700   : #455A64;
+$blue-grey-material-800   : #37474F;
+$blue-grey-material-900   : #263238;

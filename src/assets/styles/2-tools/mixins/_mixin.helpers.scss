@@ -1,0 +1,32 @@
+@mixin border-radius($radius: 4px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+    -ms-border-radius: $radius;
+}
+
+@mixin clearfix() {
+    &:after, &:before {
+        display: table;
+        content: ' ';
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+
+/*TRUNCATE TEXT*/
+
+@mixin truncateText($overflow: ellipsis) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+
+@mixin resetStyleIcon {
+    width: initial;
+    height: initial;
+    min-width: initial;
+    min-height: initial;
+}

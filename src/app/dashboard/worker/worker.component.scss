@@ -1,0 +1,96 @@
+@import '../../../assets/styles/1-settings/index';
+@import '../../../assets/styles/2-tools/index';
+
+.c-worker {
+    padding: 1.5em 2em;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    margin-bottom: 16px;
+    .c-worker__wrapper {}
+
+    .c-worker__title {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: $grey-material;
+    }
+
+    .title__office {
+        color: #333;
+    }
+
+    .title__office {
+        color: $color-elephant;
+    }
+
+    .title__address {
+        color: $color-brink-pink;
+    }
+
+    .c-worker__metainfo {
+        ul {
+            margin-bottom: 12px;
+
+            li {
+                display: inline-block;
+                margin-right: 16px;
+
+                mat-icon,
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+
+                span {
+                    color: $grey-material-700;
+                    font-size: 14px;
+                    margin-left: 4px;
+                }
+            }
+
+            .metainfo-place mat-icon {
+                color: $red-material;
+            }
+
+            .metainfo-time mat-icon {
+                color: $blue-material;
+            }
+
+            .metainfo-money mat-icon {
+                color: $amber-material;
+            }
+        }
+    }
+
+    .c-worker__description {
+        padding: 0 10px;
+        font-size: 15px;
+        margin-bottom: 16px;
+        text-align: justify;
+        columns: #505050;
+    }
+
+    .c-worker__footer {
+        @include flexLayout;
+        @include flexAlignItems;
+        @include flexJustifyContent(space-between);
+    }
+
+    .c-tag {
+        display: inline-block;
+        border: 1px solid $grey-material-500;
+        margin: 6px;
+        padding: 4px 6px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.015em;
+        color: $grey-material-800;
+    }
+
+    .wk-btn {
+        min-width: 120px;
+        background-color: #ff7166;
+        color: #fff;
+    }
+}

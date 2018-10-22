@@ -1,0 +1,42 @@
+// /*list ul*/
+
+// .ul-list-layout {
+//     width: 100%;
+//     li {
+//         padding: $space-padding;
+//     }
+// }
+
+// .list-items {
+//     width: 100%;
+//     li {
+//         margin-bottom: 10px;
+//         @include device-md {
+//             margin-bottom: 15px;
+//         }
+//     }
+// }
+
+// /*view base list*/
+
+// .view-list {
+//     .view-list__head {
+//         padding: 0 $space-padding;
+//         margin-bottom: 20px;
+//     }
+//     .view-list__header {}
+//     .section-header {
+//         text-align: center;
+//         padding: 20px 0;
+//     }
+// }
+
+// .align-right {
+//     text-align: right;
+//     &>:nth-child(n) {
+//         margin: 0 0 0 6px;
+//     }
+//     &>:first-child {
+//         margin-left: 0;
+//     }
+// }

@@ -1,0 +1,12 @@
+@mixin transition($property: all, $time: .6s, $timingFunc: ease) {
+    /* Safari 4+ ,chrome*/
+    -webkit-transition: $property $time $timingFunc;
+    /* Fx 5+ */
+    -moz-transition: $property $time $timingFunc;
+    /* IE 10+, Fx 29+ */
+    -ms-transition: $property $time $timingFunc;
+    /* Opera 12+ */
+    -o-transition: $property $time $timingFunc;
+    /* normal */
+    transition: $property $time $timingFunc;
+}

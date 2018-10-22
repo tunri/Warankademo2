@@ -1,0 +1,44 @@
+.wk-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+@media (min-width: 768px) {
+    .wk-container {
+        max-width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .wk-container {
+        max-width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .wk-container {
+        max-width: 1170px;
+    }
+}
+
+/*header util for view post */
+
+.container-onebreak {
+    max-width: 1200px;
+    margin: 0 auto;
+    @include device-lg {
+        padding: 0 10px;
+    }
+    @include device-specific-point(1530px) {
+        padding: 0 20px;
+    }
+}
+
+.container-onepoint {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}

@@ -1,0 +1,130 @@
+@import '../../../assets/styles/2-tools/index';
+@import '../../../assets/styles/1-settings/index';
+
+.wk-landing {
+  height: 100%;
+  position: relative;
+  background-color: #fceccd;
+}
+
+.vk-landing__banner {
+  margin: 3em 0 0 0;
+  z-index: 5;
+  position: relative;
+}
+
+.vk-banner__wrapper {
+  width: 90%;
+  max-width: 880px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 38px;
+    font-weight: 600;
+    text-align: center;
+    color: #302C33;
+    padding: 0 10px;
+  }
+}
+
+.wk-banner-search {
+  $heigth-bn: 56px;
+  @include flexLayout;
+  @include flexJustifyContent(space-between);
+  @include flexAlignItems;
+  width: 100%;
+  margin: 3em auto 0 auto;
+
+
+  &>div {
+    width: 78%;
+    //border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12);
+  }
+
+  .wk-input,
+  .wk-btn {
+    height: $heigth-bn;
+  }
+
+  .wk-input {
+    margin: 0;
+
+    mat-icon {
+      color: #a6aeb6;
+      font-size: 28px;
+    }
+
+    input {
+      width: 100%;
+      box-shadow: none;
+      background-color: #f9f9f9;
+      color: $grey-material-600;
+
+      @include placeholder {
+        color: #a6aeb6;
+        font-weight: 500;
+        //@include transition(all, 120ms);
+      }
+    }
+  }
+
+  .wk-input--category {
+    width: 60%;
+
+    input {
+
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+  }
+
+  .wk-input--city {
+    width: 39.8%;
+    border-left: 1px solid #e0e0e0;
+
+    input {
+      border-left: 0;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  .wk-btn {
+    width: 20%;
+    margin: 0;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12);
+  }
+
+}
+
+.wk-btn-login,
+.wk-btn-register {
+  color: #302C33;
+  height: 40px;
+}
+
+.wk-btn-login {
+  border: 2px solid #302C33;
+
+}
+
+.wk-btn-register {
+  background-color: $amber-material-600;
+}
+
+.wk-btn-search {
+  background-color: #31CEC1; //#ed791a;
+  color: #fff;
+  font-size: 16px;
+}
+
+.img-search {
+  position: absolute;
+  max-width: 30%;
+  left: 20px;
+  bottom: 0;
+  z-index: 1;
+}

@@ -1,0 +1,9 @@
+@import './../../../assets/styles/1-settings/index';
+@import './../../../assets/styles/2-tools/index';
+
+.view-recommended-head{
+    margin-bottom: 20px;
+    @include flexLayout;
+    @include flexJustifyContent(space-between);
+    @include flexAlignItems;
+}

@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  min-width: 320px;
+  font-family: $font-primary;
+  @include scrollbars(.5em, rgb(180, 180, 180));
+  height: 100%;
+  
+}
+
+body {
+  position: relative;
+  overflow: hidden;
+}

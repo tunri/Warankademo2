@@ -1,0 +1,52 @@
+<main class="view-auth view-auth-register">
+    <section class="view-auth__left">
+        <div class="view-auth__left-header">
+            <img src="/assets/images/waranka-logo.png" class="pointer" alt="waranka" routerLink='/'>
+        </div>
+        <div class="view-auth__content">
+            <h3 class="view-auth__title">Crear Cuenta en Waranka</h3>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+                <div class="wk-input wk-input--xl"
+                     [ngClass]="{'wk-input--error': controlInput(form.controls['nombres'])}">
+                    <mat-icon>person</mat-icon>
+                    <input type="text" placeholder="Nombres" formControlName="nombres">
+                </div>
+                <div class="wk-input wk-input--xl"
+                     [ngClass]="{'wk-input--error': controlInput(form.controls['apellidos'])}">
+                    <mat-icon>label</mat-icon>
+                    <input type="text" placeholder="Apellidos" formControlName="apellidos">
+                </div>
+                <div class="wk-input wk-input--xl"
+                     [ngClass]="{'wk-input--error': controlInput(form.controls['telefono']) || errorProperty === 'telefono'}">
+                    <mat-icon>phone_android</mat-icon>
+                    <input type="text" placeholder="Celular" formControlName="telefono" maxlength="9">
+                </div>
+                <div class="wk-input wk-input--xl"
+                     [ngClass]="{'wk-input--error': controlInput(form.controls['email']) || errorProperty === 'email'}">
+                    <mat-icon>email</mat-icon>
+                    <input type="email" placeholder="Correo Electronico" formControlName="email">
+                </div>
+                <div class="wk-input wk-input--xl"
+                     [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
+                    <mat-icon>vpn_key</mat-icon>
+                    <input type="password" placeholder="Contraseña" formControlName="contrasena">
+                </div>
+                <div class="box-wk-message">
+                    <div class="wk-message wk-message--error" *ngIf="errorAuth">
+                        El <strong>{{errorProperty}}</strong> ya existe, ingrese otro <strong>{{errorProperty}}</strong>
+                        para registrarse.
+                    </div>
+                </div>
+                <button mat-raised-button class="mv-button mv-secondary" [disabled]="loader || !form.valid"
+                        type="submit">
+                    <span *ngIf="!loader">Crear Cuenta</span>
+                    <div *ngIf="loader" class="freeway-spinner"></div>
+                </button>
+            </form>
+        </div>
+        <div class="box-register">¿Ya tienes una Cuenta? <span routerLink="/auth/login">Ingresa aqui!</span>
+        </div>
+    </section>
+    <section class="view-auth__rigth"></section>
+</main>

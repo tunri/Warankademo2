@@ -1,0 +1,11 @@
+.vk-header {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  .vk-header__wrapper {
+    height: 90px;
+    @include flexLayout;
+    @include flexJustifyContent(space-between);
+    @include flexAlignItems;
+  }
+}

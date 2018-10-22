@@ -1,0 +1,55 @@
+<section class="wk-landing">
+    <header class="vk-landing__header vk-header animated fadeInDown">
+        <div class="vk-header__wrapper wk-container">
+            <img src="/assets/images/branding.png" alt="waranka">
+            <div>
+                <button class="wk-btn wk-btn-outline wk-btn-login" routerLink="/auth/login">Ingresar</button>
+                <button class="wk-btn wk-btn-raised wk-btn-register" routerLink="/auth/register">Registro</button>
+            </div>
+        </div>
+    </header>
+    <div class="vk-landing__banner animated jackInTheBox">
+        <div class="vk-banner__wrapper">
+            <h1 class="">Encuentra trabajadores recomendados, confiables y seguros en el menor tiempo posible, donde
+                sea el lugar que
+                te encuentres
+            </h1>
+            <form class="wk-banner-search" #form="ngForm">
+                <div>
+                    <div class="wk-input wk-input--category">
+                        <mat-icon>search</mat-icon>
+                        <input name="oficio"
+                               [ngModel]="control.oficio"
+                               placeholder="Categoria/Oficio"
+                               [matAutocomplete]="autoOficio"
+                               (ngModelChange)="onChange($event,jobs,'filterJobs')"
+                        >
+                        <mat-autocomplete #autoOficio="matAutocomplete" [displayWith]="displayFn">
+                            <mat-option *ngFor="let job of filterJobs" [value]="job">
+                                {{job.nombre}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </div>
+                    <div class="wk-input wk-input--city">
+                        <mat-icon>location_on</mat-icon>
+                        <input name="distrito"
+                               ngModel
+                               placeholder="Distrito"
+                               [matAutocomplete]="autoDistrict"
+                               (ngModelChange)="onChange($event,districts,'filterDistricts')"
+                        >
+                        <mat-autocomplete #autoDistrict="matAutocomplete" [displayWith]="displayFn">
+                            <mat-option *ngFor="let district of filterDistricts" [value]="district">
+                                {{district.nombre}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </div>
+                </div>
+                <button class="wk-btn wk-btn-raised wk-btn-search " (click)="onSearch(form)">
+                    Buscar
+                </button>
+            </form>
+        </div>
+    </div>
+    <img src="/assets/images/search-job.png" alt="search" class="img-search animated bounceInLeft">
+</section>

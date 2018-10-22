@@ -1,0 +1,30 @@
+// objects for flex class
+.f-layout {
+    @include flexLayout;
+}
+
+.f-jc {
+    @include flexJustifyContent(space-between);
+}
+
+//justfycontent : center
+.f-jc-c {
+    @include flexJustifyContent(center);
+}
+
+.f-ai {
+    @include flexAlignItems;
+}
+
+.f-fw {
+    @include flexWrap;
+}
+
+.f-f {
+    @include flexFlex;
+}
+.item-center{
+    @include flexLayout;
+    @include flexJustifyContent;
+    @include flexAlignItems;
+}

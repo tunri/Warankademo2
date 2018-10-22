@@ -1,0 +1,71 @@
+@import '../../../assets/styles/1-settings/index';
+@import '../../../assets/styles/2-tools/index';
+
+
+.view-auth-login {
+  .view-auth__rigth {
+    background-color: $green-material;
+  }
+
+  .mv-button--login {
+    background-color: #04AEF0;
+  }
+
+  .social-item {
+    line-height: 50px;
+    @include transition(all, 300ms);
+
+    span {
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+
+      background-size: cover;
+    }
+  }
+
+  .social-google {
+    span {
+      background-image: url('/assets/images/google-color.png');
+    }
+
+    &:hover {
+      background-color: #dd4b39;
+
+      span {
+        background-image: url('/assets/images/google-white.png');
+      }
+
+    }
+  }
+
+  .social-fb {
+    span {
+      background-image: url('/assets/images/facebook-color.png');
+    }
+
+    &:hover {
+      background-color: #3b5999;
+
+      span {
+        background-image: url('/assets/images/facebook-white.png');
+      }
+
+    }
+  }
+
+  .social-twitter {
+    span {
+      background-image: url('/assets/images/twitter-color.png');
+    }
+
+    &:hover {
+      background-color: #55acee;
+
+      span {
+        background-image: url('/assets/images/twitter-white.png');
+      }
+    }
+  }
+
+}

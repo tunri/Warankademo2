@@ -1,0 +1,45 @@
+.mv-button {
+  font-family: $font-primary;
+  height: 36px;
+  font-weight: 500;
+  line-height: 40px !important;
+  line-height: 36px;
+
+  span {
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+
+  }
+}
+
+.mv-button[disabled] {
+  background-color: #efefef !important;
+  box-shadow: none !important;
+  border: 1px solid #e3e3e3 !important;
+
+  span {
+    color: $grey-material-500;
+  }
+}
+
+.mv-button:not([disabled]) {}
+
+
+.mv-primary:not([disabled]) {
+  background-color: $color-wk-primary;
+  color: #fff;
+
+  &:hover {
+    background-color: $color-wk-primary-bold;
+  }
+}
+
+.mv-secondary:not([disabled]) {
+  background-color: $color-brink-pink;
+  color: #fff;
+
+  &:hover {
+    //background-color: $color-wk-secondary-bold;
+  }
+}
