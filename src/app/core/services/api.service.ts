@@ -21,7 +21,6 @@ export class ApiService {
         };
         if (window.localStorage['token']) {
             headerConfig['Authorization'] = `${window.localStorage['token']}`;
-            headerConfig['Security-token'] = `${window.localStorage['securityToken']}`;
         }
 
         return new Headers(headerConfig);

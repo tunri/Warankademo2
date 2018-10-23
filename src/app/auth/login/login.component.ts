@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {UserService, CommonsService} from '@app/core/services';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService, CommonsService } from '@app/core/services';
+import { AuthService } from '@app/core/services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         private commonService: CommonsService,
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private authService: AuthService
     ) {
         this.buildForm();
     }
@@ -33,8 +35,11 @@ export class LoginComponent implements OnInit {
         this.errorMessage = false;
         if (this.form.valid) {
             this.loader = true;
-            this.userService.login(this.form.value).subscribe(success => {
+            this.userService.login(this.form.value).subscribe((success: any) => {
                 this.loader = false;
+                const currentUser = success.usuario;
+                this.authService.subjectUser.next(currentUser);
+                window.localStorage.setItem('token', success.token);
                 this.router.navigateByUrl('/recommended-workers');
             }, (error) => {
                 this.loader = false;

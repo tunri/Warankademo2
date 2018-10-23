@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {DistrictService} from '@app/core/services';
-import {District, Job} from '@app/core/models';
-import {NgForm} from '@angular/forms';
-import {JobsService} from '@app/core/services/jobs.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { DistrictService } from '@app/core/services';
+import { District, Job } from '@app/core/models';
+import { NgForm } from '@angular/forms';
+import { JobsService } from '@app/core/services/jobs.service';
 
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '@app/core/services/auth.service';
 
 @Component({
     selector: 'app-home',
@@ -15,6 +16,8 @@ import {Router} from '@angular/router';
 export class LandingComponent implements OnInit {
 
     control: Object = {};
+    user: Object = {}
+    isReady: boolean = false;
 
     private jobs: Job[] = [];
     filterJobs: Job[] = [];
@@ -26,11 +29,16 @@ export class LandingComponent implements OnInit {
     constructor(
         private districtService: DistrictService,
         private jobService: JobsService,
-        private  router: Router
+        private router: Router,
+        private authService: AuthService
     ) {
     }
 
     ngOnInit() {
+        this.authService.subjectUser.subscribe(user => {
+            this.user = user;
+            this.isReady = true;
+        });
         this.getJobs();
         this.getDistricts();
     }
@@ -71,5 +79,9 @@ export class LandingComponent implements OnInit {
             }
         }
         return querysParams;
+    }
+    onLogout() {
+        this.authService.subjectUser.next({});
+        window.localStorage.clear();
     }
 }

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Recommended} from '@app/core/models/model.recommended';
-import {RecommendeService} from '@app/core/services/recommende.service';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Recommended } from '@app/core/models/model.recommended';
+import { RecommendeService } from '@app/core/services/recommende.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '@app/core/services/auth.service';
 
 @Component({
     selector: 'app-recommended-worker',
@@ -13,14 +14,19 @@ export class RecommendedWorkersComponent implements OnInit {
 
     listRecommendeds: any[] = [];
     loader: boolean = true;
+    user: object = {};
 
     constructor(
         private recommendeService: RecommendeService,
+        private authService: AuthService,
         private route: ActivatedRoute
     ) {
     }
 
     ngOnInit() {
+        this.authService.subjectUser.subscribe(user => {
+            this.user = user;
+        })
         this.findAll();
     }
 

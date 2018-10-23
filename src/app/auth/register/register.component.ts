@@ -64,7 +64,14 @@ export class RegisterComponent implements OnInit {
             const user: User = Object.assign({}, this.form.value, {usuario_perfil: {perfil_id: 1}});
             this.userService.register(user).subscribe(response => {
                 this.loader = false;
-                // this.router.navigateByUrl('/recommended-workers');
+                this.userService.login({
+                    email:response.email,
+                    contrasena:user.contrasena
+                }).subscribe((authUser:any) => {
+                    const currentUser = authUser.usuario;
+                    window.localStorage.setItem('token',authUser.token);
+                    this.router.navigateByUrl('/recommended-workers');
+                });
             }, (error) => {
                 this.loader = false;
                 if (error.status === 400) {

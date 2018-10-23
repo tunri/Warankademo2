@@ -2,9 +2,15 @@
     <header class="vk-landing__header vk-header animated fadeInDown">
         <div class="vk-header__wrapper wk-container">
             <img src="/assets/images/branding.png" alt="waranka">
-            <div>
-                <button class="wk-btn wk-btn-outline wk-btn-login" routerLink="/auth/login">Ingresar</button>
-                <button class="wk-btn wk-btn-raised wk-btn-register" routerLink="/auth/register">Registro</button>
+            <div *ngIf=isReady>
+                <button *ngIf="!user.usuario_id" class="wk-btn wk-btn-outline wk-btn-login" routerLink="/auth/login">Ingresar</button>
+                <button *ngIf="!user.usuario_id" class="wk-btn wk-btn-raised wk-btn-register" routerLink="/auth/register">Registro</button>
+                <div *ngIf="user.usuario_id">
+                    <span>{{user.nombres + ' ' + user.apellidos}}</span>
+                    <button mat-icon-button class="" (click)="onLogout()">
+                        salir
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -18,12 +24,8 @@
                 <div>
                     <div class="wk-input wk-input--category">
                         <mat-icon>search</mat-icon>
-                        <input name="oficio"
-                               [ngModel]="control.oficio"
-                               placeholder="Categoria/Oficio"
-                               [matAutocomplete]="autoOficio"
-                               (ngModelChange)="onChange($event,jobs,'filterJobs')"
-                        >
+                        <input name="oficio" [ngModel]="control.oficio" placeholder="Categoria/Oficio"
+                            [matAutocomplete]="autoOficio" (ngModelChange)="onChange($event,jobs,'filterJobs')">
                         <mat-autocomplete #autoOficio="matAutocomplete">
                             <mat-option *ngFor="let job of filterJobs" [value]="job.nombre">
                                 {{job.nombre}}
@@ -32,12 +34,8 @@
                     </div>
                     <div class="wk-input wk-input--city">
                         <mat-icon>location_on</mat-icon>
-                        <input name="distrito"
-                               ngModel
-                               placeholder="Distrito"
-                               [matAutocomplete]="autoDistrict"
-                               (ngModelChange)="onChange($event,districts,'filterDistricts')"
-                        >
+                        <input name="distrito" ngModel placeholder="Distrito" [matAutocomplete]="autoDistrict"
+                            (ngModelChange)="onChange($event,districts,'filterDistricts')">
                         <mat-autocomplete #autoDistrict="matAutocomplete">
                             <mat-option *ngFor="let district of filterDistricts" [value]="district.nombre">
                                 {{district.nombre}}
