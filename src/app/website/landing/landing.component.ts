@@ -15,14 +15,14 @@ import { AuthService } from '@app/core/services/auth.service';
 })
 export class LandingComponent implements OnInit {
 
-    control: Object = {};
-    user: Object = {}
+    control: any = {};
+    user: any = {};
     isReady: boolean = false;
 
-    private jobs: Job[] = [];
+    public jobs: Job[] = [];
     filterJobs: Job[] = [];
 
-    private districts: District[] = [];
+    public districts: District[] = [];
     filterDistricts: District[] = [];
 
 

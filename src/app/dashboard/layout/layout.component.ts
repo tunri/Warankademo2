@@ -8,7 +8,7 @@ import { AuthService } from '@app/core/services/auth.service';
 })
 export class LayoutDashboardComponent implements OnInit {
 
-    user: object = {};
+    user: any = {};
     constructor(
         private authService: AuthService
     ) { }
