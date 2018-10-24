@@ -1,8 +1,10 @@
 <section class="c-worker" *ngIf="worker.usuario_perfil_id">
     <div class="c-worker__wrapper">
         <h3 class="c-worker__title">
-            <span class="title__office">Creative Frontend Developer</span>
-            at <span class="title__address">WestBook</span>
+            <span class="title__office">
+                {{worker.nombres + ' ' + worker.apellidos}}
+            </span>
+            en <span class="title__address">{{worker.distrito.nombre}}</span>
         </h3>
         <div class="c-worker__metainfo">
             <ul>
@@ -11,8 +13,8 @@
                     <span>{{worker.distrito.nombre}}</span>
                 </li>
                 <li class="metainfo-time">
-                    <mat-icon>access_time</mat-icon>
-                    <span>Full Time</span>
+                    <mat-icon>phone</mat-icon>
+                    <span>{{worker.telefono}}</span>
                 </li>
                 <li class="metainfo-money">
                     <mat-icon>attach_money</mat-icon>

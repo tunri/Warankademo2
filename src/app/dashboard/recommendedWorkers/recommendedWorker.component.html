@@ -51,7 +51,7 @@
                     <app-worker [worker]="worker"></app-worker>
                 </li>
             </ul>
-            <div *ngIf="listRecommendeds.length">
+            <div *ngIf="haverWorkers" class="not-found">
                 No hay datos
             </div>
         </div>

@@ -4,6 +4,7 @@ import {CommonsService, UserService} from '@app/core/services';
 
 import {Router} from '@angular/router';
 import {User} from '@app/core/models';
+import {AuthService} from '@app/core/services/auth.service';
 
 @Component({
     selector: 'app-register',
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
         private fb: FormBuilder,
         private commonService: CommonsService,
         private router: Router,
-        private  userService: UserService
+        private  userService: UserService,
+        private authService: AuthService
     ) {
         this.buildForm();
     }
@@ -65,11 +67,12 @@ export class RegisterComponent implements OnInit {
             this.userService.register(user).subscribe(response => {
                 this.loader = false;
                 this.userService.login({
-                    email:response.email,
-                    contrasena:user.contrasena
-                }).subscribe((authUser:any) => {
+                    email: response.email,
+                    contrasena: user.contrasena
+                }).subscribe((authUser: any) => {
                     const currentUser = authUser.usuario;
-                    window.localStorage.setItem('token',authUser.token);
+                    this.authService.subjectUser.next(currentUser);
+                    window.localStorage.setItem('token', authUser.token);
                     this.router.navigateByUrl('/recommended-workers');
                 });
             }, (error) => {
