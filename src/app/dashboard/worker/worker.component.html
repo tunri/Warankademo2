@@ -23,11 +23,7 @@
             </ul>
         </div>
         <div class="c-worker__description">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus, cum numquam esse dolorem recusandae quas
-            eum nisi autem? Excepturi laborum odio tenetur id neque, debitis natus? Nisi facere vero neque.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident voluptates, laudantium ea, a ipsa ullam
-            reprehenderit quasi consequuntur porro laborum eligendi eaque possimus aperiam quia. Praesentium laborum
-            illo consequuntur ab.
+            {{(worker.descripcion && worker.descripcion.length) ? worker.descripcion:'Descripcion de Trabajador...' }}
         </div>
         <div class="c-worker__footer">
             <div class="c-worker__tags">
