@@ -38,9 +38,9 @@ export class LandingComponent implements OnInit {
         this.authService.subjectUser.subscribe(user => {
             this.user = user;
             this.isReady = true;
+            this.getJobs();
+            this.getDistricts();
         });
-        this.getJobs();
-        this.getDistricts();
     }
 
     private filter(name: string, list: Array<Job | District>): Array<Job | District> {
@@ -61,13 +61,15 @@ export class LandingComponent implements OnInit {
     }
 
     onSearch(form: NgForm) {
-        const auth = true;
-        if (auth) {
+
+        if ('id' in this.user) {
             this.router.navigate(['/recommended-workers'], {
                 queryParams: this.getQueryParams(form.value)
             });
         } else {
-            console.log(form.value);
+            this.router.navigate(['/auth/login'], {
+                queryParams: this.getQueryParams(form.value)
+            });
         }
     }
 

@@ -46,7 +46,7 @@
                 </ul>
             </div>
         </div>
-        <div class="box-register">¿No tienes una Cuenta? <span routerLink="/auth/register">Registrate aqui!</span>
+        <div class="box-register">¿No tienes una Cuenta? <span [routerLink]="['/auth/register']" [queryParams]="queryParams">Registrate aqui!</span>
         </div>
     </section>
     <section class="view-auth__rigth"></section>

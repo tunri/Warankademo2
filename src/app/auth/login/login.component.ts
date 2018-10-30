@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, CommonsService } from '@app/core/services';
 import { AuthService } from '@app/core/services/auth.service';
 
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     form: FormGroup;
     submitted: boolean = false;
     loader: boolean = false;
+    queryParams: object = {};
 
     errorMessage: boolean = false;
 
@@ -22,12 +23,14 @@ export class LoginComponent implements OnInit {
         private commonService: CommonsService,
         private userService: UserService,
         private router: Router,
+        private route: ActivatedRoute,
         private authService: AuthService
     ) {
         this.buildForm();
     }
 
     ngOnInit() {
+        this.getQueryParams();
     }
 
     onLogin() {
@@ -40,7 +43,9 @@ export class LoginComponent implements OnInit {
                 const currentUser = success.usuario;
                 this.authService.subjectUser.next(currentUser);
                 window.localStorage.setItem('token', success.token);
-                this.router.navigateByUrl('/recommended-workers');
+                this.router.navigate(['/recommended-workers'], {
+                    queryParams: this.queryParams
+                });
             }, (error) => {
                 this.loader = false;
                 if (error.status === 400) {
@@ -63,4 +68,8 @@ export class LoginComponent implements OnInit {
         return this.commonService.validateInput(input, this.submitted);
     }
 
+
+    private getQueryParams(): void {
+        this.queryParams = this.route.snapshot.queryParams;
+    }
 }

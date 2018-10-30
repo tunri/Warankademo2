@@ -45,7 +45,7 @@
                 </button>
             </form>
         </div>
-        <div class="box-register">¿Ya tienes una Cuenta? <span routerLink="/auth/login">Ingresa aqui!</span>
+        <div class="box-register">¿Ya tienes una Cuenta? <span [routerLink]="['/auth/login']" [queryParams]="queryParams">Ingresa aqui!</span>
         </div>
     </section>
     <section class="view-auth__rigth"></section>

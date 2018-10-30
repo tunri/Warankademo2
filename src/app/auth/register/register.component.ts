@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CommonsService, UserService} from '@app/core/services';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonsService, UserService } from '@app/core/services';
 
-import {Router} from '@angular/router';
-import {User} from '@app/core/models';
-import {AuthService} from '@app/core/services/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { User } from '@app/core/models';
+import { AuthService } from '@app/core/services/auth.service';
 
 @Component({
     selector: 'app-register',
@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     loader: boolean = false;
     errorAuth: boolean = false;
     regexStr = '[0-9]{9}';
+    queryParams: object = {};
 
     errorProperty: string = undefined;
 
@@ -25,13 +26,15 @@ export class RegisterComponent implements OnInit {
         private fb: FormBuilder,
         private commonService: CommonsService,
         private router: Router,
-        private  userService: UserService,
-        private authService: AuthService
+        private userService: UserService,
+        private authService: AuthService,
+        private route: ActivatedRoute
     ) {
         this.buildForm();
     }
 
     ngOnInit() {
+        this.getQueryParams();
         this.onChangePropertyError();
     }
 
@@ -63,7 +66,7 @@ export class RegisterComponent implements OnInit {
         this.errorAuth = false;
         if (this.form.valid) {
             this.loader = true;
-            const user: User = Object.assign({}, this.form.value, {usuario_perfil: {perfil_id: 1}});
+            const user: User = Object.assign({}, this.form.value, { usuario_perfil: { perfil_id: 1 } });
             this.userService.register(user).subscribe(response => {
                 this.loader = false;
                 this.userService.login({
@@ -73,7 +76,9 @@ export class RegisterComponent implements OnInit {
                     const currentUser = authUser.usuario;
                     this.authService.subjectUser.next(currentUser);
                     window.localStorage.setItem('token', authUser.token);
-                    this.router.navigateByUrl('/recommended-workers');
+                    this.router.navigate(['/recommended-workers'], {
+                        queryParams: this.queryParams
+                    });
                 });
             }, (error) => {
                 this.loader = false;
@@ -96,6 +101,10 @@ export class RegisterComponent implements OnInit {
 
     controlInput(input) {
         return this.commonService.validateInput(input, this.submitted);
+    }
+
+    private getQueryParams(): void {
+        this.queryParams = this.route.snapshot.queryParams;
     }
 
 
