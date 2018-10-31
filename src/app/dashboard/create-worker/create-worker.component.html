@@ -20,9 +20,13 @@
                 <mat-icon>phone_android</mat-icon>
                 <input type="text" placeholder="Celular" maxlength="9" formControlName="telefono">
             </div>
-            <div class="wk-input wk-input--textarea" [ngClass]="{'wk-input--error': controlInput(form.controls['direccion'])}">
+            <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['direccion'])}">
+                <mat-icon>location_on</mat-icon>
+                <input type="text" placeholder="Direccion" maxlength="9" formControlName="direccion">
+            </div>
+            <div class="wk-input wk-input--textarea" [ngClass]="{'wk-input--error': controlInput(form.controls['descripcion'])}">
                 <mat-icon>email</mat-icon>
-                <textarea type="text" placeholder="Direccion" formControlName="direccion"></textarea>
+                <textarea type="text" placeholder="Descripcion" formControlName="descripcion"></textarea>
             </div>
             <div class="wk-input wk-input--category wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['oficio'])}">
                 <mat-icon>work</mat-icon>

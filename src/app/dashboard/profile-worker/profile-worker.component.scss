@@ -1,0 +1,39 @@
+@import '../../../assets/styles/1-settings/index';
+@import '../../../assets/styles/2-tools/index';
+
+.view-profile {
+    background-color: #fff;
+    padding: 0;
+
+    &__banner {
+        padding: 2em;
+        //background-color: $amber-material;
+        text-align: center;
+        border-bottom: 1px solid $grey-material-300;
+
+        h3 {
+            font-size: 20px;
+            margin-top: 16px;
+            margin-bottom: 14px;
+        }
+
+        .address {
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 28px;
+        }
+    }
+
+    .description {
+        padding: 2em;
+        border-bottom: 1px solid $grey-material-300;
+    }
+
+    .comments {
+        padding: 2em;
+
+    }
+
+}

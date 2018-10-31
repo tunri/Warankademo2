@@ -52,6 +52,7 @@ export class CreateWorkerComponent implements OnInit {
             direccion: ['', Validators.required],
             oficio: ['', Validators.required],
             distrito: ['', Validators.required],
+            descripcion: ['', Validators.required],
             oficio_id: [''],
             distrito_id: [''],
             usuario_perfil_id: [1]
@@ -70,7 +71,7 @@ export class CreateWorkerComponent implements OnInit {
             this.recommendedService.create(body).subscribe(success => {
                 this.snackBar.open('Recomendado Creado!!', '', {
                     duration: 2000,
-                  });
+                });
                 this.router.navigateByUrl('/recommended-workers');
                 this.loader = false;
             }, (error) => {
