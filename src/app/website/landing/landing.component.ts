@@ -61,8 +61,7 @@ export class LandingComponent implements OnInit {
     }
 
     onSearch(form: NgForm) {
-
-        if ('id' in this.user) {
+        if ('usuario_id' in this.user) {
             this.router.navigate(['/recommended-workers'], {
                 queryParams: this.getQueryParams(form.value)
             });

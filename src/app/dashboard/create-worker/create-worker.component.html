@@ -1,3 +1,61 @@
-<p>
-  create-worker works!
-</p>
+<div class="wk-container">
+    <div class="form-content frame-sky">
+        <div>
+            <h3 class="wk-subtitle wk-subtitle--xl">Agregar un recomendado</h3>
+            <p class="wk-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem cupiditate minus
+                corrupti deserunt
+                atque molestiae! Nobis!</p>
+        </div>
+        <br>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['nombres'])}">
+                <mat-icon>label</mat-icon>
+                <input type="text" placeholder="Nombres" formControlName="nombres">
+            </div>
+            <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['apellidos'])}">
+                <mat-icon>label</mat-icon>
+                <input type="text" placeholder="Apellidos" formControlName="apellidos">
+            </div>
+            <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['telefono'])}">
+                <mat-icon>phone_android</mat-icon>
+                <input type="text" placeholder="Celular" maxlength="9" formControlName="telefono">
+            </div>
+            <div class="wk-input wk-input--textarea" [ngClass]="{'wk-input--error': controlInput(form.controls['direccion'])}">
+                <mat-icon>email</mat-icon>
+                <textarea type="text" placeholder="Direccion" formControlName="direccion"></textarea>
+            </div>
+            <div class="wk-input wk-input--category wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['oficio'])}">
+                <mat-icon>work</mat-icon>
+                <input name="oficio" formControlName="oficio" placeholder="Categoria/Oficio" [matAutocomplete]="autoOficio"
+                    (ngModelChange)="onChange($event,jobs,'filterJobs')">
+                <mat-autocomplete #autoOficio="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectedJob($event)">
+                    <mat-option *ngFor="let job of filterJobs" [value]="job">
+                        {{job.nombre}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="wk-input wk-input--city wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['distrito'])}">
+                <mat-icon>location_on</mat-icon>
+                <input name="distrito" formControlName="distrito" placeholder="Distrito" [matAutocomplete]="autoDistrict"
+                    (ngModelChange)="onChange($event,districts,'filterDistricts')">
+                <mat-autocomplete #autoDistrict="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectedDistrict($event)">
+                    <mat-option *ngFor="let district of filterDistricts" [value]="district">
+                        {{district.nombre}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="box-wk-message">
+                <div class="wk-message wk-message--error" *ngIf="errorAuth">
+                    El <strong>Celular</strong> ya existe, ingrese otro <strong>numero</strong>
+                    para registrar a recomendado.
+                </div>
+            </div>
+            <div>
+                <button mat-raised-button class="mv-button mv-primary btn-create" type="submit" [disabled]="loader || !form.valid">
+                    <div *ngIf="!loader">ingresar</div>
+                    <div *ngIf="loader" class="freeway-spinner"></div>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

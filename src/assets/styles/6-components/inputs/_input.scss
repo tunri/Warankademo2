@@ -64,8 +64,10 @@
         @include placeholder {
 
             color: #9eb0c6;
-            font-weight: 500;
             @include transition(all, 120ms);
+            font-family: $font-primary;
+            font-weight: 400;
+            font-size: 15px;
         }
     }
 
@@ -118,4 +120,18 @@
 
 .wk-input--xl {
     height: 50px;
+}
+
+.wk-input--textarea {
+    height: auto;
+
+    mat-icon {
+        top: 17px;
+        z-index: 5;
+        @include transform(none);
+    }
+
+    textarea {
+        padding-left: 50px;
+    }
 }

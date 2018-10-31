@@ -8,12 +8,14 @@ import {ListFavoritesWorkerComponent} from './list-favorites-worker/list-favorit
 import {RoutingDashboardModule} from './dashboard.routing';
 import {SharedModule} from '../shared/shared.module';
 import {WorkerComponent} from './worker/worker.component';
+import { MatAutocompleteModule } from '@angular/material';
 
 @NgModule({
     imports: [
         CommonModule,
         RoutingDashboardModule,
-        SharedModule
+        SharedModule,
+        MatAutocompleteModule
     ],
     declarations: [
         LayoutDashboardComponent,

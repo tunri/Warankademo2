@@ -1,15 +1,119 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { CommonsService, DistrictService } from '@app/core/services';
+import { JobsService } from '@app/core/services/jobs.service';
+import { Job, District } from '@app/core/models';
+import { RecommendeService } from '@app/core/services/recommende.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 @Component({
-  selector: 'app-create-worker',
-  templateUrl: './create-worker.component.html',
-  styleUrls: ['./create-worker.component.scss']
+    selector: 'app-create-worker',
+    templateUrl: './create-worker.component.html',
+    styleUrls: ['./create-worker.component.scss'],
 })
 export class CreateWorkerComponent implements OnInit {
 
-  constructor() { }
+    form: FormGroup;
+    submitted: boolean = false;
+    loader: boolean = false;
+    errorAuth: boolean = false;
+    regexStr = '[0-9]{9}';
 
-  ngOnInit() {
-  }
+    public jobs: Job[] = [];
+    filterJobs: Job[] = [];
 
+    public districts: District[] = [];
+    filterDistricts: District[] = [];
+
+    errorProperty: string = undefined;
+
+    constructor(
+        private fb: FormBuilder,
+        private commonService: CommonsService,
+        private districtService: DistrictService,
+        private jobService: JobsService,
+        private recommendedService: RecommendeService,
+        private router: Router,
+        public snackBar: MatSnackBar
+    ) {
+        this.buildForm();
+    }
+
+    ngOnInit() {
+        this.getJobs();
+        this.getDistricts();
+    }
+
+    buildForm() {
+        this.form = this.fb.group({
+            nombres: ['', Validators.required],
+            apellidos: ['', Validators.required],
+            telefono: ['', Validators.compose([Validators.required, Validators.pattern(this.regexStr)])],
+            direccion: ['', Validators.required],
+            oficio: ['', Validators.required],
+            distrito: ['', Validators.required],
+            oficio_id: [''],
+            distrito_id: [''],
+            usuario_perfil_id: [1]
+        });
+    }
+
+    onSubmit(): void {
+        this.submitted = true;
+        this.errorAuth = false;
+        if (this.form.valid) {
+            this.loader = true;
+            let body = this.form.value;
+            delete body.distrito;
+            delete body.oficio;
+            body.foto = 'incoming';
+            this.recommendedService.create(body).subscribe(success => {
+                this.snackBar.open('Recomendado Creado!!', '', {
+                    duration: 2000,
+                  });
+                this.router.navigateByUrl('/recommended-workers');
+                this.loader = false;
+            }, (error) => {
+                if (error.status === 400) {
+                    this.errorAuth = true;
+                } else {
+                    alert('Oops!, Ha ocurrido un error, intentelo en otro momento');
+                }
+                this.loader = false;
+            });
+        }
+    }
+
+    controlInput(input) {
+        return this.commonService.validateInput(input, this.submitted);
+    }
+
+    getDistricts(): void {
+        this.districtService.findAll().subscribe(districts => this.filterDistricts = this.districts = districts);
+    }
+
+    getJobs(): void {
+        this.jobService.findAll().subscribe(jobs => this.filterJobs = this.jobs = jobs);
+    }
+    private filter(name: string, list: Array<Job | District>): Array<Job | District> {
+        return list.filter(item => item.nombre.toLowerCase().indexOf(name.toLowerCase()) > -1);
+    }
+    onChange(newvalue: string | Job, list: Array<Job | District>, listfilter: string) {
+        newvalue = (typeof newvalue === 'object') ? newvalue.nombre : newvalue;
+        console.log(newvalue);
+        this[listfilter] = this.filter(newvalue, list);
+    }
+    displayFn(item?: any): string | undefined {
+        return item ? item.nombre : undefined;
+    }
+    selectedJob(item: any) {
+        this.form.patchValue({
+            oficio_id: item.option.value.oficio_id
+        })
+    }
+    selectedDistrict(item: any) {
+        this.form.patchValue({
+            distrito_id: item.option.value.distrito_id
+        })
+    }
 }

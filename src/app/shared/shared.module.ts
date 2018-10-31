@@ -1,12 +1,13 @@
 // modules
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatSnackBarModule
 } from '@angular/material';
 
 // components
@@ -23,7 +24,9 @@ import {
         MatIconModule,
         MatButtonModule,
         MatCheckboxModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
     exports: [
         MatFormFieldModule,
@@ -31,7 +34,9 @@ import {
         MatIconModule,
         MatButtonModule,
         MatCheckboxModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
     declarations: [HeaderComponent, FooterComponent]
 })

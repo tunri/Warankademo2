@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Recommended} from '@app/core/models/model.recommended';
-import {RecommendeService} from '@app/core/services/recommende.service';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
-import {AuthService} from '@app/core/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { Recommended } from '@app/core/models/model.recommended';
+import { RecommendeService } from '@app/core/services/recommende.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '@app/core/services/auth.service';
+import { Job } from '@app/core/models';
 
 @Component({
     selector: 'app-recommended-worker',
@@ -16,6 +17,7 @@ export class RecommendedWorkersComponent implements OnInit {
     loader: boolean = true;
     user: object = {};
     haverWorkers: boolean = false;
+    jobs: Job[] = [];
 
     constructor(
         private recommendeService: RecommendeService,
