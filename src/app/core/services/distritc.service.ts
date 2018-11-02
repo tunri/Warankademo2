@@ -13,7 +13,6 @@ export class DistrictService {
     }
 
     findAll(): Observable<District[]> {
-        return of(DistrictMock);
-        // return this.apiService.get('/oficio/distrito');
+        return this.apiService.get('/oficio/distrito');
     }
 }

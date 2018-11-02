@@ -6,7 +6,7 @@
                 <h4>Distritos</h4>
                 <ul>
                     <li *ngFor="let district of districts">
-                        <mat-checkbox class="example-margin" [value]="district" (change)=changeDistrict(district,$event)>{{district.nombre}}</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="onChangeDistrict(district)" [checked]="district.selected" [value]="district" >{{district.nombre}}</mat-checkbox>
                     </li>
                 </ul>
             </div>
@@ -14,7 +14,7 @@
                 <h4>Oficios</h4>
                 <ul>
                     <li *ngFor="let job of jobs">
-                        <mat-checkbox [value]="job.office_id" class="example-margin">{{job.nombre}}</mat-checkbox>
+                        <mat-checkbox [value]="job.office_id" (change)="onChangeJob(job)" [checked]="job.selected" class="example-margin">{{job.nombre}}</mat-checkbox>
                     </li>
                 </ul>
             </div>
