@@ -1,7 +1,10 @@
 <section class="wk-landing">
     <header class="vk-landing__header vk-header animated fadeInDown">
         <div class="vk-header__wrapper wk-container">
-            <img src="/assets/images/branding.png" alt="waranka">
+            <div class="vk-header__logo">
+                <img src="/assets/images/job-search.svg" class="icon-waranka" alt="waranka">
+                <img src="/assets/images/logo-name.png" alt="waranka" class="icon-waranka-name">
+            </div>
             <div *ngIf=isReady>
                 <button *ngIf="!user.usuario_id" class="wk-btn wk-btn-outline wk-btn-login" routerLink="/auth/login">Ingresar</button>
                 <button *ngIf="!user.usuario_id" class="wk-btn wk-btn-raised wk-btn-register" routerLink="/auth/register">Registro</button>

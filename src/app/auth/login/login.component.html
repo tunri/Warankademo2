@@ -1,19 +1,24 @@
 <section class="view-auth view-auth-login">
     <section class="view-auth__left">
         <div class="view-auth__left-header">
-            <img src="assets/images/waranka-logo.png" class="pointer" alt="waranka" routerLink='/'>
+            <div routerLink='/' class="pointer">
+                <div>
+                    <img src="/assets/images/job-search.svg" class="icon-waranka" alt="waranka">
+                </div>
+                <div>
+                    <img src="/assets/images/logo-name-color.png" class="icon-waranka-name" alt="waranka">
+                </div>
+            </div>
         </div>
         <div class="view-auth__content">
             <h3 class="view-auth__title">Good Evening! Bienvenido a Waranka</h3>
             <h5 class="view-auth__subtitle">Ingresa con tu cuenta <strong>Waranka</strong></h5>
             <form [formGroup]="form" (ngSubmit)="onLogin()" novalidate>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['email'])}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['email'])}">
                     <mat-icon>email</mat-icon>
                     <input type="email" placeholder="Correo Electronico" formControlName="email">
                 </div>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
                     <mat-icon>vpn_key</mat-icon>
                     <input type="password" placeholder="Contraseña" formControlName="contrasena">
                 </div>
@@ -46,8 +51,11 @@
                 </ul>
             </div>
         </div>
-        <div class="box-register">¿No tienes una Cuenta? <span [routerLink]="['/auth/register']" [queryParams]="queryParams">Registrate aqui!</span>
+        <div class="box-register">¿No tienes una Cuenta? <span [routerLink]="['/auth/register']" [queryParams]="queryParams">Registrate
+                aqui!</span>
         </div>
     </section>
-    <section class="view-auth__rigth"></section>
+    <section class="view-auth__rigth">
+        <img src="/assets/images/connectpeople.png" alt="image">
+    </section>
 </section>

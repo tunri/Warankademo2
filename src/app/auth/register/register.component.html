@@ -7,28 +7,23 @@
             <h3 class="view-auth__title">Crear Cuenta en Waranka</h3>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['nombres'])}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['nombres'])}">
                     <mat-icon>person</mat-icon>
                     <input type="text" placeholder="Nombres" formControlName="nombres">
                 </div>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['apellidos'])}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['apellidos'])}">
                     <mat-icon>label</mat-icon>
                     <input type="text" placeholder="Apellidos" formControlName="apellidos">
                 </div>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['telefono']) || errorProperty === 'telefono'}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['telefono']) || errorProperty === 'telefono'}">
                     <mat-icon>phone_android</mat-icon>
                     <input type="text" placeholder="Celular" formControlName="telefono" maxlength="9">
                 </div>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['email']) || errorProperty === 'email'}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['email']) || errorProperty === 'email'}">
                     <mat-icon>email</mat-icon>
                     <input type="email" placeholder="Correo Electronico" formControlName="email">
                 </div>
-                <div class="wk-input wk-input--xl"
-                     [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
                     <mat-icon>vpn_key</mat-icon>
                     <input type="password" placeholder="Contraseña" formControlName="contrasena">
                 </div>
@@ -38,15 +33,17 @@
                         para registrarse.
                     </div>
                 </div>
-                <button mat-raised-button class="mv-button mv-secondary" [disabled]="loader || !form.valid"
-                        type="submit">
+                <button mat-raised-button class="mv-button mv-secondary" [disabled]="loader || !form.valid" type="submit">
                     <span *ngIf="!loader">Crear Cuenta</span>
                     <div *ngIf="loader" class="freeway-spinner"></div>
                 </button>
             </form>
         </div>
-        <div class="box-register">¿Ya tienes una Cuenta? <span [routerLink]="['/auth/login']" [queryParams]="queryParams">Ingresa aqui!</span>
+        <div class="box-register">¿Ya tienes una Cuenta? <span [routerLink]="['/auth/login']" [queryParams]="queryParams">Ingresa
+                aqui!</span>
         </div>
     </section>
-    <section class="view-auth__rigth"></section>
+    <section class="view-auth__rigth">
+        <img src="/assets/images/jobservice.png" alt="image">
+    </section>
 </main>

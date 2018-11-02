@@ -1,11 +1,30 @@
 .vk-header {
-  width: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  .vk-header__wrapper {
-    height: 90px;
+    .vk-header__wrapper {
+        height: 90px;
+        @include flexLayout;
+        @include flexJustifyContent(space-between);
+        @include flexAlignItems;
+    }
+    .icon-waranka-name{
+        margin-left: 10px;
+    }
+}
+
+.icon-waranka {
+    max-width: 70px;
+}
+
+.icon-waranka-name {
+    max-width: 170px;
+}
+
+
+
+.vk-header__logo {
     @include flexLayout;
-    @include flexJustifyContent(space-between);
-    @include flexAlignItems;
-  }
+    @include flexJustifyContent(stretch);
+    @include flexAlignItems(center);
 }
