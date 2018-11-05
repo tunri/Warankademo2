@@ -7,7 +7,8 @@ import {
     MatIconModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 
 // components
@@ -26,7 +27,8 @@ import {
         MatCheckboxModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatFormFieldModule,
@@ -36,7 +38,8 @@ import {
         MatCheckboxModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatProgressSpinnerModule
     ],
     declarations: [HeaderComponent, FooterComponent]
 })

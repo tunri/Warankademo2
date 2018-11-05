@@ -20,6 +20,8 @@ export class UserService {
         return this.apiService.post('/user/auth', credentials);
     }
 
+    
+
     getCurrentUser(): Observable<Recommended>{
         return this.apiService.post('/user/access');
     }

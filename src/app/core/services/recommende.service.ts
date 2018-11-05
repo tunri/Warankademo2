@@ -20,5 +20,6 @@ export class RecommendeService {
     findAll(query: string): Observable<Recommended[]> {
         return this.apiService.get(`/recomendado${query}`);
     }
+    
 
 }

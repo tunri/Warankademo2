@@ -7,3 +7,7 @@
     @include flexJustifyContent(space-between);
     @include flexAlignItems;
 }
+.raised-secondary{
+    width: 100%;
+    margin: 0;
+}

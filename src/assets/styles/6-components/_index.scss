@@ -3,6 +3,8 @@
 @import 'header';
 @import 'freeway-spinner';
 @import "message";
+@import "loader";
+
 
 .not-found{
     text-align: center;
@@ -21,3 +23,7 @@
         max-width: 100%;
     }
 }
+.icon-black{
+    color: #333!important;
+}
+

@@ -1,22 +1,26 @@
 <section class="view-main">
     <section class="view-main__header header-app">
         <div class="header-app__wrapper">
-            <span> <img src="/assets/images/google-color.png" alt="waranka"></span>
+            <img src="/assets/images/job-search.svg" alt="waranka" class="icon-waranka" routerLink="/">
+            <!-- <span> </span> -->
             <div class="list-alienated">
                 <span>
-                    <img src="/assets/images/google-color.png" alt="jerson victor">
+                    <!-- <img src="/assets/images/google-color.png" alt="jerson victor"> -->
                 </span>
                 <span class="header-app__username">{{user.nombres + ' ' + user.apellidos}}</span>
-                <button mat-icon-button class="">
-                    <mat-icon aria-label="favoritos">favorite</mat-icon>
+                <button mat-icon-button [matMenuTriggerFor]="menuOptions">
+                    <mat-icon class="icon-black">more_vert</mat-icon>
                 </button>
-                <button mat-icon-button class="">
-                    <mat-icon aria-label="notificaciones">notifications</mat-icon>
-                </button>
-                <button mat-icon-button class="" title="salir" (click)="onLogout()">
-                    <!-- <mat-icon aria-label="options">more_vert</mat-icon> -->
-                    <img src="/assets/images/logout.png" alt="salir">
-                </button>
+                <mat-menu #menuOptions="matMenu">
+                    <button mat-menu-item routerLink="favorite-workers" aria-label="favorite-workers">
+                        <mat-icon>favorite</mat-icon>
+                        <span>Mi Lista</span>
+                    </button>
+                    <button mat-menu-item (click)="onLogout()" aria-label="logout">
+                        <img src="/assets/images/logout.png" alt="salir">
+                        <span>Salir</span>
+                    </button>
+                </mat-menu>
             </div>
         </div>
     </section>

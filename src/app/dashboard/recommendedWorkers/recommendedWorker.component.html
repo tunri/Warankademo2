@@ -2,37 +2,50 @@
     <div class="view-recommended__wrapper">
         <div class="view-recommended__filters">
             <h3 class="wk-subtitle">Filtros</h3>
+            <div class="wk-input">
+                <mat-icon>search</mat-icon>
+                <input type="text" placeholder="Buscar por Nombre" [(ngModel)]="nameSearch">
+            </div>
             <div class="filter-list">
                 <h4>Distritos</h4>
                 <ul>
                     <li *ngFor="let district of districts">
-                        <mat-checkbox class="example-margin" (change)="onChangeDistrict(district)" [checked]="district.selected" [value]="district" >{{district.nombre}}</mat-checkbox>
+                        <mat-checkbox class="example-margin" (change)="onSelectedItem(district)" [checked]="district.selected"
+                            [value]="district">{{district.nombre}}</mat-checkbox>
                     </li>
                 </ul>
             </div>
             <div class="filter-list">
                 <h4>Oficios</h4>
                 <ul>
-                    <li *ngFor="let job of jobs">
-                        <mat-checkbox [value]="job.office_id" (change)="onChangeJob(job)" [checked]="job.selected" class="example-margin">{{job.nombre}}</mat-checkbox>
+                    <li *ngFor="let job of jobs;">
+                        <mat-checkbox [value]="job" (change)="onSelectedItem(job)" [checked]="job.selected" class="example-margin">{{job.nombre}}</mat-checkbox>
                     </li>
                 </ul>
             </div>
+            <div class="box-btn-search">
+                <button class="wk-btn wk-btn-raised raised-secondary" (click)="onSearch()">buscar</button>
+            </div>
         </div>
         <div class="view-recommended__list">
+
             <div class="view-recommended-head">
-                <span class="wk-subtitle">Trabajadores Recomendados</span>
-                <div>
-                    <button class="wk-btn wk-btn-raised raised-primary" routerLink="create-worker">agregar</button>
+                <div class="wk-subtitle">
+                    Trabajadores Recomendados
                 </div>
+                <button class="wk-btn wk-btn-raised raised-primary" routerLink="create-worker">agregar</button>
             </div>
-            <ul>
-                <li *ngFor="let worker of listRecommendeds">
-                    <app-worker [worker]="worker"></app-worker>
-                </li>
-            </ul>
+            <div>
+                <ul>
+                    <li *ngFor="let worker of listRecommendeds">
+                        <app-worker [worker]="worker"></app-worker>
+                    </li>
+                </ul>
+                <mat-paginator *ngIf="listRecommendeds.length" [length]="allRecommendeds.length" [pageSize]="sizePage" [showFirstLastButtons]="true"
+                    (page)="onChangePage($event)"></mat-paginator>
+            </div>
             <div *ngIf="haverWorkers" class="not-found">
-                No hay datos
+                No hay coincidencias de busqueda!
             </div>
         </div>
     </div>

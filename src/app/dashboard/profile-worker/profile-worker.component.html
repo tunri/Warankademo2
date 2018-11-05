@@ -1,24 +1,31 @@
-<div class="wk-container view-profile">
+<div class="wk-container view-profile" *ngIf="!loader">
     <div class="view-profile__banner">
+        <div style="text-align: left">
+            <button mat-icon-button routerLink="/recommended-workers">
+                <mat-icon aria-label="back">keyboard_arrow_left</mat-icon> Volver
+            </button>
+        </div>
         <div class="avatar">
             <img src="/assets/images/face.png" alt="">
         </div>
-        <h3>Jerson Estacio Garcia</h3>
+        <h3>{{Worker.nombres + ' ' + Worker.apellidos}}</h3>
         <div class="address">
-            Mz D Lt 22 San Juan de Lurigancho, Lima
+            <p>{{Worker.direccion}},</p>
+            <p>{{Worker.distrito.nombre}}</p>
+            <p>{{Worker.telefono}}</p>
         </div>
-        <h2>Devekliooer FullStack</h2>
+        <h2>{{Worker.oficio.nombre}}</h2>
+        <div>
+            <button mat-raised-button class="mv-button mv-primary btn-create" type="button" (click)="addList()" [disabled]="loader">
+                <span *ngIf="!loaderAdd">Agregar a mi Lista</span>
+                <span *ngIf="loaderAdd" class="freeway-spinner"></span>
+            </button>
+        </div>
     </div>
     <div class="description">
         <h3>Descripción</h3>
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos neque aperiam nesciunt doloremque blanditiis,
-            eius
-            architecto ea fuga distinctio nam vel ipsa, aspernatur quibusdam quasi enim facere debitis natus a.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis quis aperiam nihil amet, nemo dolore
-            animi eaque nostrum magnam molestias quibusdam voluptatum illo atque eum numquam, laborum consequuntur
-            eveniet
-            necessitatibus.
+            {{Worker.descripcion}}
         </p>
     </div>
     <div class="comments">
@@ -26,4 +33,7 @@
             data-numposts="5" data-width="100%">
             cargando..</div>
     </div>
+</div>
+<div *ngIf="loader" class="content-loader">
+    <mat-spinner [diameter]="40"></mat-spinner>
 </div>
