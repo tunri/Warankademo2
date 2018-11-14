@@ -6,7 +6,7 @@
                 <mat-icon>search</mat-icon>
                 <input type="text" placeholder="Buscar por Nombre" [(ngModel)]="nameSearch">
             </div>
-            <div class="filter-list">
+            <div class="filter-list" *ngIf="districts.length">
                 <h4>Distritos</h4>
                 <ul>
                     <li *ngFor="let district of districts">
@@ -15,7 +15,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="filter-list">
+            <div class="filter-list" *ngIf="jobs.length">
                 <h4>Oficios</h4>
                 <ul>
                     <li *ngFor="let job of jobs;">

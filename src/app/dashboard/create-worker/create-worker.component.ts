@@ -53,8 +53,8 @@ export class CreateWorkerComponent implements OnInit {
             oficio: ['', Validators.required],
             distrito: ['', Validators.required],
             descripcion: ['', Validators.required],
-            oficio_id: [''],
-            distrito_id: [''],
+            oficio_id: ['', Validators.required],
+            distrito_id: ['', Validators.required],
             usuario_perfil_id: [1]
         });
     }
@@ -99,10 +99,16 @@ export class CreateWorkerComponent implements OnInit {
     private filter(name: string, list: Array<Job | District>): Array<Job | District> {
         return list.filter(item => item.nombre.toLowerCase().indexOf(name.toLowerCase()) > -1);
     }
-    onChange(newvalue: string | Job, list: Array<Job | District>, listfilter: string) {
-        newvalue = (typeof newvalue === 'object') ? newvalue.nombre : newvalue;
-        console.log(newvalue);
-        this[listfilter] = this.filter(newvalue, list);
+    onChange(newValue: any | Job, list: Array<Job | District>, listFilter: string) {
+        let value = undefined;
+        let nameProperty = (listFilter === 'filterDistricts') ? 'distrito_id' : 'oficio_id';
+        if (typeof newValue === 'object') {
+            value = newValue[nameProperty];
+            newValue = newValue.nombre
+        }
+        this[listFilter] = this.filter(newValue, list);
+        //update property
+        this.form.get(nameProperty).setValue(value);
     }
     displayFn(item?: any): string | undefined {
         return item ? item.nombre : undefined;
@@ -116,5 +122,9 @@ export class CreateWorkerComponent implements OnInit {
         this.form.patchValue({
             distrito_id: item.option.value.distrito_id
         })
+    }
+
+    controlErrorAutoComplete(propId, prop) {
+        return (this.form.get(propId).invalid || this.form.get(prop).invalid) && (this.form.get(prop).touched || this.form.get(prop).dirty)
     }
 }

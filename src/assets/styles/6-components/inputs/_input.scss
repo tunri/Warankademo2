@@ -135,3 +135,20 @@
         padding-left: 50px;
     }
 }
+
+.wk-input--validatorIcon {
+    position: relative;
+
+    .icon-validator {
+        position: absolute;
+        right: 6px;
+        top: 14px;
+        width: 22px;
+        height: 22px;
+
+        mat-icon {
+            position: absolute;
+            left: 0;
+        }
+    }
+}

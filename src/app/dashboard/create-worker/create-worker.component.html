@@ -26,22 +26,27 @@
                 <mat-icon>phone_android</mat-icon>
                 <input type="text" placeholder="Celular" maxlength="9" formControlName="telefono">
             </div>
-            <div class="wk-input wk-input--city wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['distrito'])}">
+            <div class="wk-input wk-input--city wk-input--xl wk-input--validatorIcon" [attr.title]="" [ngClass]="{'wk-input--error': controlErrorAutoComplete('distrito_id','distrito')}">
                 <mat-icon>location_on</mat-icon>
-                <input name="distrito" formControlName="distrito" placeholder="Distrito" [matAutocomplete]="autoDistrict"
-                    (ngModelChange)="onChange($event,districts,'filterDistricts')">
-                <mat-autocomplete #autoDistrict="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selectedDistrict($event)">
+                <input name="distrito" #inputDistrict formControlName="distrito" placeholder="Distrito"
+                    [matAutocomplete]="autoDistrict" (ngModelChange)="onChange($event,districts,'filterDistricts')">
+                <mat-autocomplete #autoDistrict="matAutocomplete" [displayWith]="displayFn">
                     <mat-option *ngFor="let district of filterDistricts" [value]="district">
                         {{district.nombre}}
                     </mat-option>
                 </mat-autocomplete>
+                <span class="icon-validator" *ngIf="form.get('distrito').touched || form.get('distrito').dirty">
+                    <mat-icon *ngIf="form.get('distrito_id').value">done</mat-icon>
+                    <mat-icon *ngIf="!form.get('distrito_id').value">close</mat-icon>
+                </span>
             </div>
             <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['direccion'])}">
                 <mat-icon>location_on</mat-icon>
-                <input type="text" placeholder="Direccion" maxlength="9" formControlName="direccion">
+                <input type="text" placeholder="Direccion" formControlName="direccion">
             </div>
 
-            <div class="wk-input wk-input--category wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['oficio'])}">
+            <div class="wk-input wk-input--category wk-input--xl wk-input--validatorIcon" 
+            [ngClass]="{'wk-input--error': controlErrorAutoComplete('oficio_id','oficio')}">
                 <mat-icon>work</mat-icon>
                 <input name="oficio" formControlName="oficio" placeholder="Categoria/Oficio" [matAutocomplete]="autoOficio"
                     (ngModelChange)="onChange($event,jobs,'filterJobs')">
@@ -50,6 +55,10 @@
                         {{job.nombre}}
                     </mat-option>
                 </mat-autocomplete>
+                <span class="icon-validator" *ngIf="form.get('oficio').touched || form.get('oficio').dirty">
+                    <mat-icon *ngIf="form.get('oficio_id').value">done</mat-icon>
+                    <mat-icon *ngIf="!form.get('oficio_id').value">close</mat-icon>
+                </span>
             </div>
 
             <div class="wk-input wk-input--textarea" [ngClass]="{'wk-input--error': controlInput(form.controls['descripcion'])}">

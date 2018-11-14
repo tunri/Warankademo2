@@ -10,10 +10,13 @@ html {
   font-family: $font-primary;
   @include scrollbars(.5em, rgb(180, 180, 180));
   height: 100%;
-  
+
 }
 
 body {
   position: relative;
   overflow: hidden;
+}
+textarea{
+    font-family: $font-primary;
 }
