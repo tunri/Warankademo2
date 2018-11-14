@@ -16,6 +16,9 @@ export class CommentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (!this.post.foto || !this.post.foto.length) {
+      this.post.foto = '/assets/images/face.jpg'
+    }
     //this.getUser();
   }
   getUser(): void {

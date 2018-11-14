@@ -67,7 +67,7 @@ export class CreateWorkerComponent implements OnInit {
             let body = this.form.value;
             delete body.distrito;
             delete body.oficio;
-            body.foto = 'incoming';
+            //body.foto = 'incoming';
             this.recommendedService.create(body).subscribe(success => {
                 this.snackBar.open('Recomendado Creado!!', '', {
                     duration: 2000,

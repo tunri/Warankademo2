@@ -42,7 +42,11 @@ export class ProfileWorkerComponent implements OnInit {
         allResponse.subscribe(results => {
             let user = results[0];
             let feeds = results[1];
+
             this.Worker = user[0];
+            if (!this.Worker.foto || !this.Worker.foto.length) {
+                this.Worker.foto = '/assets/images/user-face.jpg'
+            }
 
             this.counterLike = feeds.filter(feed => feed.atributo_id === 1).length;
             this.counterShare = feeds.filter(feed => feed.atributo_id === 3).length;
@@ -94,10 +98,10 @@ export class ProfileWorkerComponent implements OnInit {
             telefono: this.Worker.telefono
         }).subscribe(response => {
             let message = (id === 1) ? 'Me gusta' : 'Compartido';
-            if(id === 1){
+            if (id === 1) {
                 this.counterLike++;
             }
-            if(id === 3){
+            if (id === 3) {
                 this.counterShare++;
             }
             this.toast(message);
