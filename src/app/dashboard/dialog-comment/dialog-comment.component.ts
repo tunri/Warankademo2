@@ -22,7 +22,7 @@ export class DialogCommentComponent implements OnInit {
   ngOnInit() {
     this.worker = this.data.worker;
   }
-  close(): void {
+  close(ev): void {
     this.dialogRef.close(false);
   }
   send(): void {
