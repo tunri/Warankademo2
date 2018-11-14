@@ -1,0 +1,27 @@
+.dialog-comment {
+    position: relative;
+    .dialog-comment__header{
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-size: 18px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    textarea {
+        display: block;
+        width: 100%;
+        outline: none;
+        height: 170px;
+        resize: none;
+        padding: 12px;
+        border: 1px solid #999;
+        border-radius: 3px;
+    }
+
+    .dialog-comment__events {
+        text-align: right;
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,33 @@
+<section class="wk-comment">
+    <div class="f-layout f-ai wk-comment__header">
+        <div class="wk-avatar">
+            <img src="/assets/images/user-face.jpg" alt="user">
+        </div>
+        <div class="f-f wk-comment-info">
+            <div class="f-layout f-jc f-ai">
+                <div>
+                    <h4 class="wk-comment__username">
+                        <!-- <span>{{user.nombres + user.apellidos}}</span> -->
+                        <span>Username</span>
+                    </h4>
+                    <h5 class="wk-comment__date">{{post.fecha | date:'dd/MM/yyyy h:mm'}}</h5>
+                </div>
+                <!-- <span class="wk-comment__time">hace 4 hotas</span> -->
+            </div>
+        </div>
+    </div>
+    <div class="wk-comment__body">
+        {{post.valor}}
+    </div>
+    <div class="f-layout f-jc f-ai wk-comment__footer">
+        <div class="list-alienated">
+            <button mat-icon-button matTooltip="Like It!" [matTooltipPosition]="'above'">
+                <mat-icon aria-label="Me Gusta">favorite</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="Ver Comentarios!" [matTooltipPosition]="'above'">
+                <mat-icon aria-label="Mi Lista">insert_comment</mat-icon>
+            </button>
+        </div>
+        <button mat-button color="accent">Help!</button>
+    </div>
+</section>

@@ -1,4 +1,4 @@
-<div class="wk-container section-create">
+<div class="wk-container section-create split-header">
     <div class="form-content frame-sky">
         <div>
             <div>
@@ -26,7 +26,8 @@
                 <mat-icon>phone_android</mat-icon>
                 <input type="text" placeholder="Celular" maxlength="9" formControlName="telefono">
             </div>
-            <div class="wk-input wk-input--city wk-input--xl wk-input--validatorIcon" [attr.title]="" [ngClass]="{'wk-input--error': controlErrorAutoComplete('distrito_id','distrito')}">
+            <div class="wk-input wk-input--city wk-input--xl wk-input--validatorIcon" [attr.title]="" 
+            [ngClass]="{'wk-input--error': controlErrorAutoComplete('distrito_id','distrito')}">
                 <mat-icon>location_on</mat-icon>
                 <input name="distrito" #inputDistrict formControlName="distrito" placeholder="Distrito"
                     [matAutocomplete]="autoDistrict" (ngModelChange)="onChange($event,districts,'filterDistricts')">

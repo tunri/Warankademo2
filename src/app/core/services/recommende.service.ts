@@ -20,6 +20,16 @@ export class RecommendeService {
     findAll(query: string): Observable<Recommended[]> {
         return this.apiService.get(`/recomendado${query}`);
     }
-    
+
+    feeds(body: object = {}): Observable<any> {
+        return this.apiService.post(`/atributo`, body);
+    }
+
+    findFeeds(query): Observable<any> {
+        return this.apiService.get(`/atributo${query}`);
+    }
+
+
+
 
 }

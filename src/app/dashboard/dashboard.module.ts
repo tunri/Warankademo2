@@ -8,7 +8,9 @@ import { ListFavoritesWorkerComponent } from './list-favorites-worker/list-favor
 import { RoutingDashboardModule } from './dashboard.routing';
 import { SharedModule } from '../shared/shared.module';
 import { WorkerComponent } from './worker/worker.component';
-import { MatAutocompleteModule, MatMenuModule, MatPaginatorModule } from '@angular/material';
+import { MatAutocompleteModule, MatMenuModule, MatPaginatorModule, MatTooltipModule, MatDialogModule } from '@angular/material';
+import { DialogCommentComponent } from './dialog-comment/dialog-comment.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
     imports: [
@@ -17,7 +19,9 @@ import { MatAutocompleteModule, MatMenuModule, MatPaginatorModule } from '@angul
         SharedModule,
         MatAutocompleteModule,
         MatMenuModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatDialogModule
     ],
     declarations: [
         LayoutDashboardComponent,
@@ -25,7 +29,11 @@ import { MatAutocompleteModule, MatMenuModule, MatPaginatorModule } from '@angul
         ProfileWorkerComponent,
         CreateWorkerComponent,
         ListFavoritesWorkerComponent,
-        WorkerComponent]
+        WorkerComponent,
+        DialogCommentComponent,
+        CommentComponent
+    ],
+    entryComponents: [DialogCommentComponent]
 })
 export class DashboardModule {
 }

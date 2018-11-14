@@ -125,6 +125,6 @@ export class CreateWorkerComponent implements OnInit {
     }
 
     controlErrorAutoComplete(propId, prop) {
-        return (this.form.get(propId).invalid || this.form.get(prop).invalid) && (this.form.get(prop).touched || this.form.get(prop).dirty)
+        return (this.form.get(propId).invalid || this.form.get(prop).invalid) && (this.form.get(prop).touched || this.form.get(prop).dirty);
     }
 }

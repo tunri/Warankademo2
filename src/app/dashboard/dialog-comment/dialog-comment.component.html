@@ -1,0 +1,22 @@
+<div class="dialog-comment">
+
+    <div mat-dialog-content>
+        <div class="f-layout f-jc f-ai dialog-comment__header">
+            <h2>Escibe un Comentario</h2>
+            <button mat-icon-button class="btn-close" (click)="close($ev)">
+                <mat-icon aria-label="close">close</mat-icon>
+            </button>
+        </div>
+
+        <div>
+            <textarea name="" [(ngModel)]="comment" placeholder="Escribir aqui..."></textarea>
+        </div>
+    </div>
+    <div mat-dialog-actions class="dialog-comment__events">
+        <button mat-stroked-button (click)="send()" color="primary">
+            <span *ngIf="!loader">ENVIAR</span>
+            <span *ngIf="loader" class="freeway-spinner"></span>
+        </button>
+    </div>
+
+</div>

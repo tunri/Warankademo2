@@ -20,10 +20,13 @@ export class UserService {
         return this.apiService.post('/user/auth', credentials);
     }
 
-    
 
-    getCurrentUser(): Observable<Recommended>{
+
+    getCurrentUser(): Observable<Recommended> {
         return this.apiService.post('/user/access');
+    }
+    getUser(phone): Observable<Recommended> {
+        return this.apiService.get(`/user?telefono=${phone}`);
     }
 
 }

@@ -1,37 +1,83 @@
-<div class="wk-container view-profile" *ngIf="!loader">
+<div *ngIf="!loader" class="view-profile">
     <div class="view-profile__banner">
-        <div style="text-align: left">
-            <button mat-icon-button routerLink="/recommended-workers">
-                <mat-icon aria-label="back">keyboard_arrow_left</mat-icon> Volver
-            </button>
-        </div>
-        <div class="avatar">
-            <img src="/assets/images/face.png" alt="">
-        </div>
-        <h3>{{Worker.nombres + ' ' + Worker.apellidos}}</h3>
-        <div class="address">
-            <p>{{Worker.direccion}},</p>
-            <p>{{Worker.distrito.nombre}}</p>
-            <p>{{Worker.telefono}}</p>
-        </div>
-        <h2>{{Worker.oficio.nombre}}</h2>
-        <div>
-            <button mat-raised-button class="mv-button mv-primary btn-create" type="button" (click)="addList()" [disabled]="loader">
-                <span *ngIf="!loaderAdd">Agregar a mi Lista</span>
-                <span *ngIf="loaderAdd" class="freeway-spinner"></span>
-            </button>
+        <div class="wk-container">
+            <div class="f-layout f-ai">
+                <div class="wk-avatar">
+                    <img src="/assets/images/user-face.jpg" alt="user">
+                </div>
+                <div class="f-f view-profile__info">
+                    <div>
+                        <h2>{{Worker.nombres + ' ' + Worker.apellidos}}</h2>
+                        <span class="wk-tag">{{Worker.oficio.nombre}}</span>
+                    </div>
+                    <div class="view-profile__location">
+                        <div class="text-icon address mrg-l0">
+                            <mat-icon>location_on</mat-icon>
+                            <span>{{Worker.direccion}}, {{Worker.distrito.nombre}}</span>
+                        </div>
+                        <div class="list-alienated">
+                            <p class="text-icon mrg-l0">
+                                <mat-icon>phone</mat-icon>
+                                <span>{{Worker.telefono}}</span>
+                            </p>
+                            <p class="text-icon">
+                                <mat-icon>email</mat-icon>
+                                <span>jerosn@gmail.com</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="view-profile__social-count list-alienated">
+                        <div class="social-item social-post">
+                            <span>{{comments.length}}</span>
+                            <span>Comentarios</span>
+                        </div>
+                        <div class="social-item social-followers">
+                            <span>{{counterLike}}</span>
+                            <span>Like It</span>
+                        </div>
+                        <div class="social-item social-following">
+                            <span>{{counterShare}}</span>
+                            <span>Compartidos</span>
+                        </div>
+                    </div>
+                    <div class="view-profile__description">
+                        <h4>Acerca de mi:</h4>
+                        <p>
+                                {{Worker.descripcion}}
+                        </p>
+                    </div>
+                    <div class="list-alienated view-profile__events">
+                        <button mat-icon-button matTooltip="Like It!" [matTooltipPosition]="'above'" (click)="likeOrShare(1)">
+                            <mat-icon aria-label="Me Gusta">favorite</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Agregar a mi Lista!" [matTooltipPosition]="'above'" (click)="addList()">
+                            <mat-icon aria-label="Mi Lista">playlist_add</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Compartir Recomendado!" [matTooltipPosition]="'above'"
+                            (click)="likeOrShare(3)">
+                            <mat-icon aria-label="Example icon-button with a heart icon">share</mat-icon>
+                        </button>
+                        <button mat-flat-button color="accent" class="btn-send-commnent" (click)="openDialogComment($event)">Enviar
+                            Comentario</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="description">
-        <h3>Descripción</h3>
-        <p>
-            {{Worker.descripcion}}
-        </p>
-    </div>
-    <div class="comments">
-        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-            data-numposts="5" data-width="100%">
-            cargando..</div>
+    <div class="view-profile__body">
+        <div class="wk-container">
+            <div class="content-comments" *ngIf="comments.length">
+                <h3 class="title-sect">Comentarios</h3>
+                <ul>
+                    <li *ngFor="let comment of comments">
+                        <app-comment [post]="comment"></app-comment>
+                    </li>
+                </ul>
+            </div>
+            <div *ngIf="!comments.length" class="not-found">
+                 No hay Comentarios
+            </div>
+        </div>
     </div>
 </div>
 <div *ngIf="loader" class="content-loader">

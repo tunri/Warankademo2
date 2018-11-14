@@ -1,0 +1,13 @@
+$size-avatar:160px;
+
+.wk-avatar {
+    width: $size-avatar;
+    height: $size-avatar;
+    display: inline-block;
+    border-radius: 50%;
+
+    img {
+        max-width: 100%;
+        border-radius: 50%;
+    }
+}
