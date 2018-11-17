@@ -1,9 +1,26 @@
-.section-create{
+@import '../../../assets/styles/1-settings/index';
+@import '../../../assets/styles/2-tools/index';
+
+.section-create {
     max-width: 768px;
 }
+
 .btn-create {
     min-width: 120px;
+
     span {
         vertical-align: initial;
     }
 }
+
+.btn-up-picture {
+    position: absolute;
+    background-color: #0DC662;
+    bottom: 0;
+    right: 0;
+    color: #FFF;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+

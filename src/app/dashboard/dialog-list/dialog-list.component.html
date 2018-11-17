@@ -1,0 +1,29 @@
+<div class="dialog-comment">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div mat-dialog-content>
+            <div class="f-layout f-jc f-ai dialog-comment__header mb-3">
+                <h4>Crear Lista</h4>
+                <button mat-icon-button class="btn-close" (click)="close($event)">
+                    <mat-icon aria-label="close">close</mat-icon>
+                </button>
+            </div>
+            <div>
+                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['nombre'])}">
+                    <mat-icon>label</mat-icon>
+                    <input type="text" placeholder="Nombre" formControlName="nombre">
+                </div>
+
+                <div class="wk-input wk-input--textarea mb-0" [ngClass]="{'wk-input--error': controlInput(form.controls['descripcion'])}">
+                    <mat-icon>email</mat-icon>
+                    <textarea type="text" placeholder="Descripcion" formControlName="descripcion"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="text-right mt-3">
+            <button mat-stroked-button color="primary">
+                <span *ngIf="!loader">ENVIAR</span>
+                <span *ngIf="loader" class="freeway-spinner"></span>
+            </button>
+        </div>
+    </form>
+</div>

@@ -12,7 +12,25 @@
                 requerir sus servicios, haz grande la comunidad!!
             </p>
         </div>
-        <br>
+        <div class="text-center my-4">
+            <div class="wk-avatar-border position-relative">
+                <div class="wk-avatar wk-avatar-mock" *ngIf="!isUploaded">
+                    <img src="/assets/images/user.png" alt="user icon default">
+                </div>
+                <input type="file" #file class="d-none" (change)="upload()">
+                <button mat-icon-button aria-label="add picture" class="btn-up-picture" (click)="file.click()">
+                    <i *ngIf="!form.get('foto').value.length" class="fas fa-plus fa-2x"></i>
+                    <i *ngIf="form.get('foto').value.length" class="fas fa-pencil-alt" [style.font-size]="'20px'"></i>
+                </button>
+                <div class="wk-avatar" *ngIf="isUploaded">
+                    <span class="loader-spin-avatar">
+                        <i class="fas fa-spinner fa-2x fa-pulse "></i>
+                    </span>
+                    <div class="picture-avatar" *ngIf="!loaderImage" [ngStyle]="{'background-image': getSanitizaUrl(form.get('foto'))}"></div>
+                </div>
+            </div>
+        </div>
+
         <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
             <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['nombres'])}">
                 <mat-icon>label</mat-icon>
@@ -26,8 +44,7 @@
                 <mat-icon>phone_android</mat-icon>
                 <input type="text" placeholder="Celular" maxlength="9" formControlName="telefono">
             </div>
-            <div class="wk-input wk-input--city wk-input--xl wk-input--validatorIcon" [attr.title]="" 
-            [ngClass]="{'wk-input--error': controlErrorAutoComplete('distrito_id','distrito')}">
+            <div class="wk-input wk-input--city wk-input--xl wk-input--validatorIcon" [attr.title]="" [ngClass]="{'wk-input--error': controlErrorAutoComplete('distrito_id','distrito')}">
                 <mat-icon>location_on</mat-icon>
                 <input name="distrito" #inputDistrict formControlName="distrito" placeholder="Distrito"
                     [matAutocomplete]="autoDistrict" (ngModelChange)="onChange($event,districts,'filterDistricts')">
@@ -46,8 +63,7 @@
                 <input type="text" placeholder="Direccion" formControlName="direccion">
             </div>
 
-            <div class="wk-input wk-input--category wk-input--xl wk-input--validatorIcon" 
-            [ngClass]="{'wk-input--error': controlErrorAutoComplete('oficio_id','oficio')}">
+            <div class="wk-input wk-input--category wk-input--xl wk-input--validatorIcon" [ngClass]="{'wk-input--error': controlErrorAutoComplete('oficio_id','oficio')}">
                 <mat-icon>work</mat-icon>
                 <input name="oficio" formControlName="oficio" placeholder="Categoria/Oficio" [matAutocomplete]="autoOficio"
                     (ngModelChange)="onChange($event,jobs,'filterJobs')">
@@ -76,7 +92,7 @@
                 <span></span>
                 <button mat-raised-button class="mv-button mv-primary btn-create" type="submit" [disabled]="loader || !form.valid">
                     <span *ngIf="!loader">crear</span>
-                    <span *ngIf="loader" class="freeway-spinner"></span>
+                    <span *ngIf="loader" class="freeway-spinner align-middle"></span>
                 </button>
             </div>
         </form>

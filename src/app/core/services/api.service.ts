@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers, Response, URLSearchParams} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 
-import {Observable, throwError} from 'rxjs';
-import {map, catchError} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -27,8 +27,8 @@ export class ApiService {
     }
 
     private getErrorProperties(error) {
-        const {status} = error;
-        const {errors, fields} = error.json();
+        const { status } = error;
+        const { errors, fields } = error.json();
         return {
             status: status,
             errors: errors || error.json(),
@@ -39,13 +39,29 @@ export class ApiService {
     private formatError = (error) => throwError(this.getErrorProperties(error));
 
     get(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
-        return this.http.get(`${this.enviroment_api}${path}`, {headers: this.setHeader(), search: params})
+        return this.http.get(`${this.enviroment_api}${path}`, { headers: this.setHeader(), search: params })
             .pipe(catchError(this.formatError))
             .pipe(map((res: Response) => res.json()));
     }
 
     post(path: string, body: Object = {}): Observable<any> {
-        return this.http.post(`${this.enviroment_api}${path}`, body, {headers: this.setHeader()})
+        return this.http.post(`${this.enviroment_api}${path}`, body, { headers: this.setHeader() })
+            .pipe(catchError(this.formatError))
+            .pipe(map((res: Response) => res.json()));
+    }
+
+    postFormData(path: string, body: Object = {}): Observable<any> {
+        let formdata = new FormData();
+        let headers = new Headers();
+        //headers.append('Content-Type', 'multipart/form-data');
+        //headers.append('Accept', 'application/json');
+        if (window.localStorage['token']) {
+            headers['Authorization'] = `${window.localStorage['token']}`;
+        }
+        for (const key in body) {
+            formdata.append(key, body[key]);
+        }
+        return this.http.post(`${this.enviroment_api}${path}`, formdata,{headers:headers})
             .pipe(catchError(this.formatError))
             .pipe(map((res: Response) => res.json()));
     }

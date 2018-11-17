@@ -7,8 +7,10 @@ import { ListService } from '@app/core/services/list.service';
 import { MatDialog } from '@angular/material';
 import { DialogCommentComponent } from '../dialog-comment/dialog-comment.component';
 
+
 import { MatSnackBar } from '@angular/material';
 import { zip, Observable } from 'rxjs';
+import { DialogAddRecommeneddComponent } from '../dialog-add-recommenedd/dialog-add-recommenedd.component';
 
 
 @Component({
@@ -87,6 +89,22 @@ export class ProfileWorkerComponent implements OnInit {
         })
     };
 
+    openDialogAddRecommended(): void {
+        const dialogRef = this.dialog.open(DialogAddRecommeneddComponent, {
+            width: '600px',
+            data: {
+                worker: this.Worker
+            }
+        });
+        dialogRef.afterClosed().subscribe(response => {
+            if (response) {
+                // this.comments.unshift(response);
+                //add comment
+                // this.toast('Comentario Agregado');
+            }
+        })
+    }
+
     /**
      * event like it
      */
@@ -112,5 +130,8 @@ export class ProfileWorkerComponent implements OnInit {
         this.snackBar.open(message, '', {
             duration: 2000,
         });
+    }
+    getSanitizaUrl(property) {
+        return `url('${property}')`;
     }
 }

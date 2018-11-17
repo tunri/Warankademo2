@@ -13,8 +13,14 @@ export class ListService {
     }
 
     create(body: any): Observable<any> {
-        return this.apiService.post('/lista/recomendado', body);
+        return this.apiService.post('/lista', body);
     }
- 
+
+    findAll(id): Observable<any> {
+        return this.apiService.get(`/lista?usuario_perfil_id=${id}`);
+    }
+    findOne(id): Observable<any> {
+        return this.apiService.get(`/lista?lista_id=${id}`);
+    }
 
 }

@@ -2,9 +2,15 @@
     <div class="view-profile__banner">
         <div class="wk-container">
             <div class="f-layout f-ai">
-                <div class="wk-avatar">
-                    <img [src]="Worker.foto" alt="user">
+                <div class="wk-avatar position-relative">
+                    <span class="loader-spin-avatar">
+                        <i class="fas fa-spinner fa-2x fa-pulse "></i>
+                    </span>
+                    <div class="picture-avatar" [ngStyle]="{'background-image': getSanitizaUrl(Worker.foto)}"></div>
                 </div>
+                <!-- <div class="wk-avatar">
+                    <img [src]="Worker.foto" alt="user">
+                </div> -->
                 <div class="f-f view-profile__info">
                     <div>
                         <h2>{{Worker.nombres + ' ' + Worker.apellidos}}</h2>
@@ -43,14 +49,14 @@
                     <div class="view-profile__description">
                         <h4>Acerca de mi:</h4>
                         <p>
-                                {{Worker.descripcion}}
+                            {{Worker.descripcion}}
                         </p>
                     </div>
                     <div class="list-alienated view-profile__events">
                         <button mat-icon-button matTooltip="Like It!" [matTooltipPosition]="'above'" (click)="likeOrShare(1)">
                             <mat-icon aria-label="Me Gusta">favorite</mat-icon>
                         </button>
-                        <button mat-icon-button matTooltip="Agregar a mi Lista!" [matTooltipPosition]="'above'" (click)="addList()">
+                        <button mat-icon-button matTooltip="Agregar a mi Lista!" [matTooltipPosition]="'above'" (click)="openDialogAddRecommended()">
                             <mat-icon aria-label="Mi Lista">playlist_add</mat-icon>
                         </button>
                         <button mat-icon-button matTooltip="Compartir Recomendado!" [matTooltipPosition]="'above'"
@@ -75,7 +81,7 @@
                 </ul>
             </div>
             <div *ngIf="!comments.length" class="not-found">
-                 No hay Comentarios
+                No hay Comentarios
             </div>
         </div>
     </div>

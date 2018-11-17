@@ -1,4 +1,4 @@
-$size-avatar:160px;
+$size-avatar: 160px;
 
 .wk-avatar {
     width: $size-avatar;
@@ -7,7 +7,42 @@ $size-avatar:160px;
     border-radius: 50%;
 
     img {
-        max-width: 100%;
+        width: 100%;
         border-radius: 50%;
     }
+}
+
+.wk-avatar-border {
+    width: 170px;
+    height: 170px;
+    border: 4px solid #84B6FA;
+    padding: 8px;
+    border-radius: 50%;
+    display: inline-block;
+
+    .wk-avatar {
+        width: 100%;
+        height: 100%;
+    }
+
+    .wk-avatar-mock {
+        background-color: #84B6FA;
+        padding: 12px;
+    }
+}
+.picture-avatar{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+}
+
+.loader-spin-avatar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
 }

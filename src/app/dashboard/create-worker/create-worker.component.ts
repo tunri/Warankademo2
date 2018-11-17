@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CommonsService, DistrictService } from '@app/core/services';
 import { JobsService } from '@app/core/services/jobs.service';
@@ -6,18 +6,22 @@ import { Job, District } from '@app/core/models';
 import { RecommendeService } from '@app/core/services/recommende.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+
 @Component({
     selector: 'app-create-worker',
     templateUrl: './create-worker.component.html',
     styleUrls: ['./create-worker.component.scss'],
 })
 export class CreateWorkerComponent implements OnInit {
+    @ViewChild('file') file;
 
     form: FormGroup;
     submitted: boolean = false;
     loader: boolean = false;
     errorAuth: boolean = false;
     regexStr = '[0-9]{9}';
+    loaderImage: boolean = false;
+    isUploaded: boolean = false;
 
     public jobs: Job[] = [];
     filterJobs: Job[] = [];
@@ -55,7 +59,8 @@ export class CreateWorkerComponent implements OnInit {
             descripcion: ['', Validators.required],
             oficio_id: ['', Validators.required],
             distrito_id: ['', Validators.required],
-            usuario_perfil_id: [1]
+            usuario_perfil_id: [1],
+            foto: ['']
         });
     }
 
@@ -126,5 +131,22 @@ export class CreateWorkerComponent implements OnInit {
 
     controlErrorAutoComplete(propId, prop) {
         return (this.form.get(propId).invalid || this.form.get(prop).invalid) && (this.form.get(prop).touched || this.form.get(prop).dirty);
+    }
+
+    upload() {
+        const files = this.file.nativeElement.files;
+        if (files.length) {
+            let file = files[0];
+            this.isUploaded = true;
+            this.loaderImage = true;
+            this.recommendedService.uploadPicture({ upload: file })
+                .subscribe(fileUpladed => {
+                    this.form.patchValue({ foto: fileUpladed.foto });
+                    this.loaderImage = false;
+                })
+        }
+    }
+    getSanitizaUrl(property) {
+        return `url('${property.value}')`;
     }
 }

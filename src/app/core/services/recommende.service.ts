@@ -28,6 +28,9 @@ export class RecommendeService {
     findFeeds(query): Observable<any> {
         return this.apiService.get(`/atributo${query}`);
     }
+    uploadPicture(body): Observable<any> {
+        return this.apiService.postFormData('/recomendado/upload/', body);
+    }
 
 
 

@@ -5,6 +5,7 @@ import { ProfileWorkerComponent } from "./profile-worker/profile-worker.componen
 import { CreateWorkerComponent } from "./create-worker/create-worker.component";
 import { ListFavoritesWorkerComponent } from "./list-favorites-worker/list-favorites-worker.component";
 import { LayoutDashboardComponent } from "./layout/layout.component";
+import { ListFavoriteDetailComponent } from "./list-favorite-detail/list-favorite-detail.component";
 
 const routes: Routes = [
     {
@@ -24,8 +25,12 @@ const routes: Routes = [
                 component: CreateWorkerComponent
             },
             {
-                path: 'favorite-workers',
+                path: 'lists',
                 component: ListFavoritesWorkerComponent
+            },
+            {
+                path: 'list-detail/:id',
+                component: ListFavoriteDetailComponent
             }
         ]
     }

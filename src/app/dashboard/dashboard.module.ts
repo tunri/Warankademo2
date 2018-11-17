@@ -11,6 +11,10 @@ import { WorkerComponent } from './worker/worker.component';
 import { MatAutocompleteModule, MatMenuModule, MatPaginatorModule, MatTooltipModule, MatDialogModule } from '@angular/material';
 import { DialogCommentComponent } from './dialog-comment/dialog-comment.component';
 import { CommentComponent } from './comment/comment.component';
+import { CardListComponent } from './card-list/card-list.component';
+import { DialogListComponent } from './dialog-list/dialog-list.component';
+import { ListFavoriteDetailComponent } from './list-favorite-detail/list-favorite-detail.component';
+import { DialogAddRecommeneddComponent } from './dialog-add-recommenedd/dialog-add-recommenedd.component';
 
 @NgModule({
     imports: [
@@ -31,9 +35,13 @@ import { CommentComponent } from './comment/comment.component';
         ListFavoritesWorkerComponent,
         WorkerComponent,
         DialogCommentComponent,
-        CommentComponent
+        CommentComponent,
+        CardListComponent,
+        DialogListComponent,
+        ListFavoriteDetailComponent,
+        DialogAddRecommeneddComponent
     ],
-    entryComponents: [DialogCommentComponent]
+    entryComponents: [DialogCommentComponent, DialogListComponent, DialogAddRecommeneddComponent]
 })
 export class DashboardModule {
 }

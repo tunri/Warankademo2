@@ -1,0 +1,40 @@
+<div class="my-5" *ngIf="!loader">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center text-uppercase mb-3">
+                    {{ List.nombre }}
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="card-text" *ngIf="List.description && List.description.length">{{ List.description }}</p>
+                <p class="card-text font-italic" *ngIf="!List.description || !List.description.length">No hay
+                    descripción</p>
+            </div>
+        </div>
+        <mat-divider class="my-4"></mat-divider>
+        <div class="row">
+            <div class="col-12" *ngFor="let worker of workers">
+                <app-worker [worker]="worker"></app-worker>
+            </div>
+            <div class="col-sm-12" *ngIf="!workers.length">
+                <div class="p-5 bg-light">
+                    <h6 class="mb-0 text-center">No hay Recomendados!</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="my-5" *ngIf="loader">
+    <div class="container">
+        <div class="row">
+            <div class="w-100 py-5 bg-light">
+                <div class="w-100 d-flex  justify-content-center align-items-center">
+                    <mat-spinner [diameter]="32"></mat-spinner>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

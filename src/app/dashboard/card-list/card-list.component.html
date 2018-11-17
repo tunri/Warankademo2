@@ -1,0 +1,12 @@
+<div class="card card-list mb-3">
+    <!-- <img class="card-img-top" src="/assets/images/skin-cat.png" alt="Card image cap"> -->
+    <div class="card-list__picture"></div>
+    <div class="card-body">
+        <h6 class="card-title text-uppercase" [attr.title]="list.nombre" md-truncate>{{ list.nombre }}</h6>
+        <p class="card-text" *ngIf="list.description && list.description.length">{{ list.description }}</p>
+        <p class="card-text font-italic" *ngIf="!list.description || !list.description.length">No hay descripción</p>
+    </div>
+    <div class="card-footer text-right">
+        <button mat-stroked-button color="accent" [routerLink]="['../list-detail/',list.lista_id]">DETALLE</button>
+    </div>
+</div>
