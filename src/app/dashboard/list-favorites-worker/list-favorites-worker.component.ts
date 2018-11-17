@@ -31,7 +31,7 @@ export class ListFavoritesWorkerComponent implements OnInit {
         })
     }
 
-    openDialogList(ev): void {
+    openDialogList(): void {
         const dialogRef = this.dialog.open(DialogListComponent, {
             width: '540px',
             data: {
