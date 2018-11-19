@@ -15,6 +15,9 @@ export class ListService {
     create(body: any): Observable<any> {
         return this.apiService.post('/lista', body);
     }
+    linkToRecommended(body: any): Observable<any> {
+        return this.apiService.post('/lista/recomendado', body);
+    }
 
     findAll(id): Observable<any> {
         return this.apiService.get(`/lista?usuario_perfil_id=${id}`);

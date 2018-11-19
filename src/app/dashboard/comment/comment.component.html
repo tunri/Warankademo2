@@ -8,7 +8,7 @@
                 <div>
                     <h4 class="wk-comment__username">
                         <!-- <span>{{user.nombres + user.apellidos}}</span> -->
-                        <span>Username</span>
+                        <span>{{post.owner || 'Username'}}</span>
                     </h4>
                     <h5 class="wk-comment__date">{{post.fecha | date:'dd/MM/yyyy h:mm'}}</h5>
                 </div>

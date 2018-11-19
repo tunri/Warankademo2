@@ -1,6 +1,6 @@
 <div class="dialog-comment">
     <div *ngIf="!loader">
-        <div mat-dialog-content>
+        <div>
             <div class="f-layout f-jc f-ai dialog-comment__header mb-3">
                 <h4>Agregar a mi Lista</h4>
                 <button mat-icon-button class="btn-close" (click)="close($event)">
@@ -9,7 +9,9 @@
             </div>
             <div class="">
                 <div class="" *ngFor="let list of lists">
-                    <div>{{ list.nombre }}</div>
+                    <div >
+                        <mat-checkbox color="warn" (click)="toggleChecked(list)">{{list.nombre}}</mat-checkbox>
+                    </div>
                 </div>
                 <div class="" *ngIf="!lists.length">
                     <div class="p-5 bg-light">
@@ -19,7 +21,7 @@
             </div>
         </div>
         <div class="text-right mt-3">
-            <button mat-stroked-button color="primary">
+            <button mat-stroked-button color="primary" (click)="send()">
                 <span *ngIf="!loader">ENVIAR</span>
                 <span *ngIf="loader" class="freeway-spinner"></span>
             </button>

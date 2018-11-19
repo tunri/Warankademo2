@@ -98,9 +98,7 @@ export class ProfileWorkerComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(response => {
             if (response) {
-                // this.comments.unshift(response);
-                //add comment
-                // this.toast('Comentario Agregado');
+                this.toast('Agregado a Mis Listas!');;
             }
         })
     }
