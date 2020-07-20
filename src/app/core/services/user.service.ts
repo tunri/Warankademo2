@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '@app/core/models';
 import { Recommended } from '@app/core/models/model.recommended';
 
@@ -17,7 +17,15 @@ export class UserService {
     }
 
     login(credentials: Object): Observable<Object> {
-        return this.apiService.post('/user/auth', credentials);
+        return of({
+            usuario: {
+                nombres: 'Jerson Victor',
+                apellidos: 'Estacio Garcia',
+                id: 55555
+            },
+            token: 'ABCDEF',
+        })
+        // return this.apiService.post('/user/auth', credentials);
     }
 
 

@@ -5,7 +5,8 @@ import { from} from 'rxjs';
 import { AuthService } from '@app/core/services/auth.service';
 import { JobsService } from '@app/core/services/jobs.service';
 import { DistrictService } from '@app/core/services';
-import { map, distinct, concatMap, pluck, toArray } from 'rxjs/operators';
+import { map, distinct, concatMap, pluck, toArray, finalize } from 'rxjs/operators';
+import RecommendadoService from '@app/core/services/Recomendados.service';
 
 @Component({
     selector: 'app-recommended-worker',
@@ -47,21 +48,24 @@ export class RecommendedWorkersComponent implements OnInit {
         this.getJobs();
         this.getDistricts();
         this.findAll(this.toStringQuery());
+
+        const inst = RecommendadoService.getInstance();
+        console.log(inst);
     }
 
 
     private findAll(filter?): void {
         this.haverWorkers = false;
         this.listRecommendeds = [{}, {}, {}];
-        this.recommendeService.findAll(filter).subscribe(list => {
+        this.recommendeService.findAll(filter)
+        .pipe(finalize(() => this.loader = false))
+        .subscribe(list => {
             this.allRecommendeds = list.reverse();
             this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
             if (!list.length) {
                 this.haverWorkers = true;
             }
-        }, error => {
-            this.loader = false;
-        });
+        })
     };
 
 
@@ -123,7 +127,7 @@ export class RecommendedWorkersComponent implements OnInit {
         let nameQuery = this.nameSearch;
 
         let queryArray = [];
-        
+
         if (districtSelected.length) {
             queryArray = queryArray.concat(districtSelected.map(item => `distrito[nombre]=${item.nombre}`));
         }

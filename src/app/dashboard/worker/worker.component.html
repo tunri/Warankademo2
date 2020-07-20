@@ -4,13 +4,13 @@
             <span class="title__office">
                 {{worker.nombres + ' ' + worker.apellidos}}
             </span>
-            en <span class="title__address">{{worker.distrito.nombre}}</span>
+            en <span class="title__address">{{worker.distrito && worker.distrito.nombre || '-'}}</span>
         </h3>
         <div class="c-worker__metainfo">
             <ul>
                 <li class="metainfo-place">
                     <mat-icon>place</mat-icon>
-                    <span>{{worker.distrito.nombre}}</span>
+                    <span>{{worker.distrito && worker.distrito.nombre || '-'}}</span>
                 </li>
                 <li class="metainfo-time">
                     <mat-icon>phone</mat-icon>
@@ -24,7 +24,7 @@
         <div class="c-worker__footer">
             <div class="c-worker__tags">
                 <span class="c-tag">
-                    {{worker.oficio.nombre}}
+                    {{worker.oficio && worker.oficio.nombre || '-'}}
                 </span>
             </div>
             <div>
