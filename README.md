@@ -1,5 +1,6 @@
 # requerimientos
 - NodeJs v10
+- usando node v10, instalar angular client `npm install -g @angular/cli`.
 
 # Instalar
 - Posicionarse en el Proyecto
