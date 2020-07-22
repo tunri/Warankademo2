@@ -1,3 +1,12 @@
+# requerimientos
+- NodeJs v10
+
+# Instalar
+- Posicionarse en el Proyecto
+- ejecutar `npm install` para instalar dependencias
+- una vez instalado las dependencias, ejecutar `npm run start`
+
+
 # ProjectWaranka
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.
