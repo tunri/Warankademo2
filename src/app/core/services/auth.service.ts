@@ -11,11 +11,9 @@ export class AuthService implements OnInit {
 
 
     constructor() {
-        
+
     }
 
-    ngOnInit() {
-        //this.currentUser.subscribe(next => this.currentUser = next);
-    }
+    ngOnInit() { }
 
 }

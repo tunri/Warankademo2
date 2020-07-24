@@ -4,7 +4,7 @@
  */
 
 export class Category {
-    categoria_id?: number;
+    id: number;
     nombre: string;
-    descripcion: string;
+    descripcion?: string;
 }

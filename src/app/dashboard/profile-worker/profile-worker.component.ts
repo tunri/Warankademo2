@@ -12,6 +12,9 @@ import { MatSnackBar } from '@angular/material';
 import { zip, Observable } from 'rxjs';
 import { DialogAddRecommeneddComponent } from '../dialog-add-recommenedd/dialog-add-recommenedd.component';
 
+import RecommendadoService from '@app/core/services/recomendados.service';
+import { finalize } from 'rxjs/operators';
+
 
 @Component({
     selector: 'app-profile-worker',
@@ -27,6 +30,8 @@ export class ProfileWorkerComponent implements OnInit {
     counterLike: number = 0;
     counterShare: number = 0;
 
+    recomendadoService = RecommendadoService.getInstance();
+
     constructor(
         private RecommendService: RecommendeService,
         private route: ActivatedRoute,
@@ -36,33 +41,25 @@ export class ProfileWorkerComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.phone = this.route.snapshot.params.workerId;
-        const allResponse = zip(
-            this.getUser(),
-            this.getFeeds()
-        );
-        allResponse.subscribe(results => {
-            let user = results[0];
-            let feeds = results[1];
 
-            this.Worker = user[0];
-            if (!this.Worker.foto || !this.Worker.foto.length) {
-                this.Worker.foto = '/assets/images/user-face.jpg'
-            }
-
-            this.counterLike = feeds.filter(feed => feed.atributo_id === 1).length;
-            this.counterShare = feeds.filter(feed => feed.atributo_id === 3).length;
-            this.comments = feeds.filter(feed => feed.atributo_id === 2).reverse();
-            this.loader = false;
-        })
+        this.getRecomendado(1000);
     }
 
-    private getFeeds(): Observable<any> {
-        return this.RecommendService.findFeeds(`?telefono=${this.phone}`)
-    }
+    // private getFeeds(): Observable<any> {
+    //     return this.RecommendService.findFeeds(`?telefono=${this.phone}`)
+    // }
 
     private getUser(): Observable<any> {
         return this.RecommendService.findAll(`?telefono=${this.phone}`)
+    }
+
+    private getRecomendado(id: number): void {
+        this.loader = true;
+        this.recomendadoService.getRecomendadById(id)
+            .pipe(finalize(() => this.loader = false))
+            .subscribe(response => {
+                this.Worker = response;
+            })
     }
 
     addList() {
@@ -106,23 +103,23 @@ export class ProfileWorkerComponent implements OnInit {
     /**
      * event like it
      */
-    likeOrShare(id): void {
-        this.RecommendService.feeds({
-            valor: '',
-            fecha: new Date(),
-            atributo_id: id,
-            telefono: this.Worker.telefono
-        }).subscribe(response => {
-            let message = (id === 1) ? 'Me gusta' : 'Compartido';
-            if (id === 1) {
-                this.counterLike++;
-            }
-            if (id === 3) {
-                this.counterShare++;
-            }
-            this.toast(message);
-        })
-    }
+    // likeOrShare(id): void {
+    //     this.RecommendService.feeds({
+    //         valor: '',
+    //         fecha: new Date(),
+    //         atributo_id: id,
+    //         telefono: this.Worker.telefono
+    //     }).subscribe(response => {
+    //         let message = (id === 1) ? 'Me gusta' : 'Compartido';
+    //         if (id === 1) {
+    //             this.counterLike++;
+    //         }
+    //         if (id === 3) {
+    //             this.counterShare++;
+    //         }
+    //         this.toast(message);
+    //     })
+    // }
 
     private toast(message: string): void {
         this.snackBar.open(message, '', {

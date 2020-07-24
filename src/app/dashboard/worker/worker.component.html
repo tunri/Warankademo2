@@ -1,4 +1,4 @@
-<section class="c-worker" *ngIf="worker.usuario_perfil_id">
+<section class="c-worker" *ngIf="worker.id">
     <div class="c-worker__wrapper">
         <h3 class="c-worker__title">
             <span class="title__office">
@@ -35,7 +35,7 @@
         </div>
     </div>
 </section>
-<section class="c-worker c-worker-skeleton" *ngIf="!worker.usuario_perfil_id">
+<section class="c-worker c-worker-skeleton" *ngIf="!worker.id">
     <div class="c-worker__wrapper">
         <h3 class="c-worker__title skeleton__bone-skin skeleton__bone-skin-full bone-h-md"></h3>
         <div class="c-worker__metainfo">

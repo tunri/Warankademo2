@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RecommendeService } from '@app/core/services/recommende.service';
 import { ActivatedRoute } from '@angular/router';
-import { from} from 'rxjs';
+import { from } from 'rxjs';
 import { AuthService } from '@app/core/services/auth.service';
 import { JobsService } from '@app/core/services/jobs.service';
 import { DistrictService } from '@app/core/services';
 import { map, distinct, concatMap, pluck, toArray, finalize } from 'rxjs/operators';
-import RecommendadoService from '@app/core/services/Recomendados.service';
+import RecommendadoService from '@app/core/services/recomendados.service';
 
 @Component({
     selector: 'app-recommended-worker',
@@ -31,12 +30,13 @@ export class RecommendedWorkersComponent implements OnInit {
     allRecommendeds: any[] = [];
     sizePage: number = 5;
 
+    private recomendadoService = RecommendadoService.getInstance();
+    private districtService = DistrictService.getInstance();
+    private jobService = JobsService.getInstance();
+
     constructor(
-        private recommendeService: RecommendeService,
         private authService: AuthService,
         private route: ActivatedRoute,
-        private jobService: JobsService,
-        private districtService: DistrictService,
     ) {
     }
 
@@ -49,23 +49,30 @@ export class RecommendedWorkersComponent implements OnInit {
         this.getDistricts();
         this.findAll(this.toStringQuery());
 
-        const inst = RecommendadoService.getInstance();
-        console.log(inst);
     }
 
 
     private findAll(filter?): void {
         this.haverWorkers = false;
         this.listRecommendeds = [{}, {}, {}];
-        this.recommendeService.findAll(filter)
-        .pipe(finalize(() => this.loader = false))
-        .subscribe(list => {
-            this.allRecommendeds = list.reverse();
-            this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
-            if (!list.length) {
-                this.haverWorkers = true;
-            }
-        })
+        this.recomendadoService.getRecomendados()
+            .pipe(finalize(() => this.loader = false))
+            .subscribe(response => {
+                this.allRecommendeds = response;
+                this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
+                // if (!response.length) {
+                //     this.haverWorkers = true;
+                // }
+            })
+        // this.recommendeService.findAll(filter)
+        // .pipe(finalize(() => this.loader = false))
+        // .subscribe(list => {
+        //     this.allRecommendeds = list.reverse();
+        //     this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
+        //     if (!list.length) {
+        //         this.haverWorkers = true;
+        //     }
+        // })
     };
 
 

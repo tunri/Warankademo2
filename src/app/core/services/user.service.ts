@@ -9,8 +9,9 @@ import { Recommended } from '@app/core/models/model.recommended';
 })
 export class UserService {
 
-    constructor(private apiService: ApiService) {
-    }
+
+
+    constructor(private apiService: ApiService) { }
 
     register(user: User): Observable<User> {
         return this.apiService.post('/user', user);

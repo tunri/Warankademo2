@@ -25,10 +25,12 @@ export class LandingComponent implements OnInit {
     public districts: District[] = [];
     filterDistricts: District[] = [];
 
+    private districtService = DistrictService.getInstance();
+    private jobService = JobsService.getInstance();
+
 
     constructor(
-        private districtService: DistrictService,
-        private jobService: JobsService,
+
         private router: Router,
         private authService: AuthService
     ) {
@@ -38,17 +40,25 @@ export class LandingComponent implements OnInit {
         this.authService.subjectUser.subscribe(user => {
             this.user = user;
             this.isReady = true;
+
+            // Get Jobs and Districts
             this.getJobs();
             this.getDistricts();
         });
     }
 
     private filter(name: string, list: Array<Job | District>): Array<Job | District> {
-        return list.filter(item => item.nombre.toLowerCase().indexOf(name.toLowerCase()) > -1);
+        return list.filter((item: District | Job) => item.getNombre().toLowerCase().indexOf(name.toLowerCase()) > -1);
     }
 
+    // private findDistricts(nombre: string): Array<District> {
+    //     return this.filterDistricts((district: District) => district.getNombre().toLowerCase().indexOf(nombre.toLowerCase()) > -1)
+    // }
+
     getDistricts(): void {
-        this.districtService.findAll().subscribe(districts => this.filterDistricts = this.districts = districts);
+        this.districtService.findAll().subscribe(districts => {
+            this.filterDistricts = this.districts = districts
+        });
     }
 
     getJobs(): void {
@@ -56,7 +66,7 @@ export class LandingComponent implements OnInit {
     }
 
     onChange(newvalue: string | Job, list: Array<Job | District>, listfilter: string) {
-        newvalue = (typeof newvalue === 'object') ? newvalue.nombre : newvalue;
+        newvalue = (typeof newvalue === 'object') ? newvalue.getNombre() : newvalue;
         this[listfilter] = this.filter(newvalue, list);
     }
 

@@ -31,11 +31,13 @@ export class CreateWorkerComponent implements OnInit {
 
     errorProperty: string = undefined;
 
+    // uso de Singleton
+    private districtService = DistrictService.getInstance();
+    private jobService = JobsService.getInstance();
+
     constructor(
         private fb: FormBuilder,
         private commonService: CommonsService,
-        private districtService: DistrictService,
-        private jobService: JobsService,
         private recommendedService: RecommendeService,
         private router: Router,
         public snackBar: MatSnackBar
@@ -102,7 +104,7 @@ export class CreateWorkerComponent implements OnInit {
         this.jobService.findAll().subscribe(jobs => this.filterJobs = this.jobs = jobs);
     }
     private filter(name: string, list: Array<Job | District>): Array<Job | District> {
-        return list.filter(item => item.nombre.toLowerCase().indexOf(name.toLowerCase()) > -1);
+        return list.filter(item => item.getNombre().toLowerCase().indexOf(name.toLowerCase()) > -1);
     }
     onChange(newValue: any | Job, list: Array<Job | District>, listFilter: string) {
         let value = undefined;
@@ -139,11 +141,11 @@ export class CreateWorkerComponent implements OnInit {
             let file = files[0];
             this.isUploaded = true;
             this.loaderImage = true;
-            this.recommendedService.uploadPicture({ upload: file })
-                .subscribe(fileUpladed => {
-                    this.form.patchValue({ foto: fileUpladed.foto });
-                    this.loaderImage = false;
-                })
+            // this.recommendedService.uploadPicture({ upload: file })
+            //     .subscribe(fileUpladed => {
+            //         this.form.patchValue({ foto: fileUpladed.foto });
+            //         this.loaderImage = false;
+            //     })
         }
     }
     getSanitizaUrl(property) {

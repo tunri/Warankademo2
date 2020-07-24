@@ -1,80 +1,38 @@
-import {District} from '../models';
-
-export const DistrictMock: District[] = [
+export const mockDataDistricts = [
     {
-        distrito_id: 1,
+        id: 1000,
         nombre: 'Cercado de Lima'
     },
     {
-        distrito_id: 2,
+        id: 2000,
         nombre: 'Ate'
     },
     {
-        distrito_id: 3,
+        id: 3000,
         nombre: 'Barranci'
     },
     {
-        distrito_id: 4,
+        id: 4000,
         nombre: 'Breña'
     },
     {
-        distrito_id: 5,
+        id: 5000,
         nombre: 'Comas'
     },
     {
-        distrito_id: 12,
+        id: 6000,
         nombre: 'Magdalena del Mar'
     },
     {
-        distrito_id: 13,
+        id: 7000,
         nombre: 'Miraflores'
     },
     {
-        distrito_id: 14,
+        id: 8000,
         nombre: 'Pueblo Libre'
     },
     {
-        distrito_id: 15,
+        id: 9000,
         nombre: 'Puente Piedra'
-    },
-    {
-        distrito_id: 16,
-        nombre: 'Rimac'
-    },
-    {
-        distrito_id: 17,
-        nombre: 'San Isidro'
-    },
-    {
-        distrito_id: 18,
-        nombre: 'Independencia'
-    },
-    {
-        distrito_id: 19,
-        nombre: 'San Juan de Miraflores'
-    },
-    {
-        distrito_id: 20,
-        nombre: 'San Luis'
-    },
-    {
-        distrito_id: 21,
-        nombre: 'San Martin de Porres'
-    },
-    {
-        distrito_id: 22,
-        nombre: 'San Miguel'
-    },
-    {
-        distrito_id: 23,
-        nombre: 'Santiago de Surco'
-    },
-    {
-        distrito_id: 24,
-        nombre: 'Surquillo'
-    },
-    {
-        distrito_id: 25,
-        nombre: 'Villa María del Triunfo'
     }
 ];

@@ -33,13 +33,13 @@ export class DialogCommentComponent implements OnInit {
         let comment = this.comment.trim();
         if (comment.length) {
             this.loader = true;
-            this.RecommendedService.feeds({
-                valor: comment,
-                fecha: new Date(),
-                atributo_id: 2,
-                telefono: this.worker.telefono,
-                owner: `${this.user.nombres} ${this.user.apellidos}`
-            }).subscribe(response => this.dialogRef.close(response));
+            // this.RecommendedService.feeds({
+            //     valor: comment,
+            //     fecha: new Date(),
+            //     atributo_id: 2,
+            //     telefono: this.worker.telefono,
+            //     owner: `${this.user.nombres} ${this.user.apellidos}`
+            // }).subscribe(response => this.dialogRef.close(response));
         }
     }
 }

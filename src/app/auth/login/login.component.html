@@ -14,11 +14,13 @@
             <h3 class="view-auth__title">Good Evening! Bienvenido a Waranka</h3>
             <h5 class="view-auth__subtitle">Ingresa con tu cuenta <strong>Waranka</strong></h5>
             <form [formGroup]="form" (ngSubmit)="onLogin()" novalidate>
-                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['email'])}">
+                <div class="wk-input wk-input--xl"
+                    [ngClass]="{'wk-input--error': controlInput(form.controls['email'])}">
                     <mat-icon>email</mat-icon>
                     <input type="email" placeholder="Correo Electronico" formControlName="email">
                 </div>
-                <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
+                <div class="wk-input wk-input--xl"
+                    [ngClass]="{'wk-input--error': controlInput(form.controls['contrasena'])}">
                     <mat-icon>vpn_key</mat-icon>
                     <input type="password" placeholder="Contraseña" formControlName="contrasena">
                 </div>
@@ -32,26 +34,9 @@
                     <div *ngIf="loader" class="freeway-spinner"></div>
                 </button>
             </form>
-            <!-- <div class="box-continue">
-                <span class="line"></span>
-                <span class="continue-text">O continua con</span>
-                <span class="line"></span>
-            </div>
-            <div>
-                <ul class="view-auth__social">
-                    <li class="social-item social-twitter item-center">
-                        <span></span>
-                    </li>
-                    <li class="social-item social-fb item-center">
-                        <span></span>
-                    </li>
-                    <li class="social-item social-google item-center">
-                        <span></span>
-                    </li>
-                </ul>
-            </div> -->
         </div>
-        <div class="box-register">¿No tienes una Cuenta? <span [routerLink]="['/auth/register']" [queryParams]="queryParams">Registrate
+        <div class="box-register">¿No tienes una Cuenta? <span [routerLink]="['/auth/register']"
+                [queryParams]="queryParams">Registrate
                 aqui!</span>
         </div>
     </section>
