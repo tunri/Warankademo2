@@ -18,10 +18,32 @@ class RecomendadoService {
     }
 
 
-    getRecomendados(): Observable<any[]> {
+    getRecomendados(query: any): Observable<any[]> {
+
+
+
+
         const users = JSON.parse(window.localStorage.getItem('users')) || [];
         const allUsers = mockDataRecommended.concat(users);
-        return of(allUsers)
+
+        if (!query) return of(allUsers);
+
+        const distritos: any[] = query.distritos; // [id]
+        const oficios: any[] = query.oficios; // [id]
+
+        const filteredUsers = this.getFilteredUsers(distritos, oficios, allUsers);
+
+
+        return of(filteredUsers);
+    }
+
+    getFilteredUsers(distritos: any[], oficios: any[], users: any[]): any[] {
+
+        if (distritos.length === 0 && oficios.length === 0) return users;
+        else if (distritos.length === 0 && oficios.length > 0) return users.filter((user) => oficios.indexOf(user.oficio.id) > -1)
+        else if (distritos.length > 0 && oficios.length === 0) return users.filter((user) => distritos.indexOf(user.distrito.id) > -1)
+        else (distritos.length > 0 && oficios.length > 0)
+        return users.filter((user) => distritos.indexOf(user.distrito.id) > -1 && oficios.indexOf(user.oficio.id) > -1);
     }
 
     getRecomendadById(id: number): Observable<any> {
@@ -29,7 +51,6 @@ class RecomendadoService {
 
         if (!_recommend) return of(null);
         return of(_recommend);
-        // return of(new Recommended(_recommend.id, _recommend.nombres, _recommend.apellidos, _recommend.telefono, _recommend.descripcion, _recommend.foto, new Job(_recommend.oficio.id, _recommend.oficio.nombre)));
 
     }
 

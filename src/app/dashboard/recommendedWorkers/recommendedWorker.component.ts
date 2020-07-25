@@ -60,7 +60,7 @@ export class RecommendedWorkersComponent implements OnInit {
         this.haverWorkers = false;
         this.listRecommendeds = [{}, {}, {}];
 
-        this.recomendadoService.getRecomendados()
+        this.recomendadoService.getRecomendados(filter)
             .pipe(finalize(() => this.loader = false))
             .subscribe(response => {
 
@@ -83,7 +83,7 @@ export class RecommendedWorkersComponent implements OnInit {
                     return userRecomendado;
                 });
 
-                console.log(usersRecommend);
+                // console.log(usersRecommend);
 
                 this.allRecommendeds = usersRecommend;
                 this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
@@ -94,26 +94,14 @@ export class RecommendedWorkersComponent implements OnInit {
     private getJobs() {
         let jobQueryUrl = this.params.oficio;
         this.jobService.findAll()
-            .pipe(concatMap(jobs => from(jobs)))
-            .pipe(pluck('nombre'))
-            .pipe(distinct())
-            .pipe(map(job => this.itemFilter(job, jobQueryUrl)))
-            .pipe(toArray())
-            .subscribe(jobs => {
-                this.jobs = this.orderArray(jobs);
-            });
+            .subscribe(jobs => this.jobs = jobs);
     }
     private getDistricts() {
         let districtQueryUrl = this.params.distrito;
         this.districtService.findAll()
-            .pipe(concatMap(districts => from(districts)))
-            .pipe(pluck('nombre'))
-            .pipe(distinct())
-            .pipe(map(district => this.itemFilter(district, districtQueryUrl)))
-            .pipe(toArray())
             .subscribe(districts => {
-                this.districts = this.orderArray(districts);
-            });
+                this.districts = districts;
+            })
     }
     private itemFilter(name, query) {
         return {
@@ -143,23 +131,27 @@ export class RecommendedWorkersComponent implements OnInit {
         return this.allRecommendeds.slice(pageSize * page, pageSize * page + pageSize);
     }
 
-    private buildQueryParamsRequest(): string {
-        let districtSelected = this.districts.filter(district => district.selected);
-        let jobSelected = this.jobs.filter(district => district.selected);
-        let nameQuery = this.nameSearch;
+    private buildQueryParamsRequest(): any {
+        // let districtSelected = this.districts.filter(district => district.selected);
+        // let jobSelected = this.jobs.filter(district => district.selected);
+        // return {
+        //     distritos: districtSelected.map(district => console.log(district)),
+        //     oficios: jobSelected.map(job => job.getId())
+        // }
+        // let nameQuery = this.nameSearch;
 
-        let queryArray = [];
+        // let queryArray = [];
 
-        if (districtSelected.length) {
-            queryArray = queryArray.concat(districtSelected.map(item => `distrito[nombre]=${item.nombre}`));
-        }
-        if (jobSelected.length) {
-            queryArray = queryArray.concat(jobSelected.map(item => `oficio[nombre]=${item.nombre}`));
-        }
-        if (nameQuery.length) {
-            queryArray = queryArray.concat([`nombres=${nameQuery}`]);
-        }
-        return queryArray.length ? `?${queryArray.join('&')}` : '';
+        // if (districtSelected.length) {
+        //     queryArray = queryArray.concat(districtSelected.map(item => `distrito[nombre]=${item.nombre}`));
+        // }
+        // if (jobSelected.length) {
+        //     queryArray = queryArray.concat(jobSelected.map(item => `oficio[nombre]=${item.nombre}`));
+        // }
+        // if (nameQuery.length) {
+        //     queryArray = queryArray.concat([`nombres=${nameQuery}`]);
+        // }
+        // return queryArray.length ? `?${queryArray.join('&')}` : '';
     }
 
     onSelectedItem(item) {
@@ -167,9 +159,18 @@ export class RecommendedWorkersComponent implements OnInit {
     }
 
     onSearch() {
-        const query = this.buildQueryParamsRequest();
-        console.log(query);
-        this.findAll(query);
+        const distritos = this.districts.filter(district => district.selected);
+        const oficios = this.jobs.filter(job => job.selected);
+
+        const idDistritos = distritos.map(item => item.getId());
+        const idOficios = oficios.map(item => item.getId());
+
+        console.log(idDistritos, idOficios);
+
+        this.findAll({
+            distritos: idDistritos,
+            oficios: idOficios
+        });
     }
 
     onChangePage(pageEvent) {
