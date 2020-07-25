@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CommonsService, DistrictService } from '@app/core/services';
 import { JobsService } from '@app/core/services/jobs.service';
 import { Job, District } from '@app/core/models';
-import RecomendadoService from '@app/core/services/recomendados.service';
 import RecommendedUser from '@app/core/models/model.recommendedUser';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -68,47 +67,38 @@ export class CreateWorkerComponent implements OnInit {
         });
     }
 
-    onSubmit(): void {
+    // RegisterRecommended
+    newRecommended(): void {
         this.submitted = true;
         this.errorAuth = false;
         // if (this.form.valid) {
         // this.loader = true;
-        const { nombres, apellidos, telefono, distrito, direccion, officio, descripcion, foto } = this.form.value;
+        const { nombres, apellidos, telefono, distrito, direccion, oficio, descripcion, foto } = this.form.value;
+
+
 
         // USO DE BUILDER
         const userBuilder: RecommendedUserBuilder = new RecommendedUserBuilder()
         const userRecomendado: RecommendedUser = userBuilder.setFirstName(nombres)
             .setLastName(apellidos)
             .setPhone(telefono)
-            .setDistrict(distrito.nombre)
+            .setDistrict(distrito)
             .setAddress(direccion)
             .setDescription(descripcion)
             .setPicture(foto)
-            .setOffice(officio)
+            .setOffice(oficio)
             .build();
 
-        console.log(userRecomendado);
 
 
-        // this.orders.push(recomendado);
-        // delete body.distrito;
-        // delete body.oficio;
-        // //body.foto = 'incoming';
-        // this.recommendedService.create(body).subscribe(success => {
-        //     this.snackBar.open('Recomendado Creado!!', '', {
-        //         duration: 2000,
-        //     });
-        //     this.router.navigateByUrl('/recommended-workers');
-        //     this.loader = false;
-        // }, (error) => {
-        //     if (error.status === 400) {
-        //         this.errorAuth = true;
-        //     } else {
-        //         alert('Oops!, Ha ocurrido un error, intentelo en otro momento');
-        //     }
-        //     this.loader = false;
-        // });
-        // }
+        // console.log(userRecomendado);
+
+        this.save(userRecomendado);
+
+        // this.form.reset();
+
+        this.router.navigateByUrl('/recommended-workers');
+
     }
 
     controlInput(input) {
@@ -123,21 +113,25 @@ export class CreateWorkerComponent implements OnInit {
         this.jobService.findAll().subscribe(jobs => this.filterJobs = this.jobs = jobs);
     }
     private filter(name: string, list: Array<Job | District>): Array<Job | District> {
-        return list.filter(item => item.getNombre().toLowerCase().indexOf(name.toLowerCase()) > -1);
+        return list.filter(item => item && item.getNombre().toLowerCase().indexOf(name.toLowerCase()) > -1);
     }
     onChange(newValue: any | District | Job, list: Array<Job | District>, listFilter: string) {
 
         let value = undefined;
         let nameProperty = (listFilter === 'filterDistricts') ? 'distrito_id' : 'oficio_id';
 
-        if (typeof newValue === 'object') {
+        console.log(newValue);
+
+        if (newValue && typeof newValue === 'object') {
             value = newValue.getId();
             newValue = newValue.getNombre()
         }
 
-        this[listFilter] = this.filter(newValue, list);
-        //update property
-        this.form.get(nameProperty).setValue(value);
+        if (newValue) {
+            this[listFilter] = this.filter(newValue, list);
+            //update property
+            this.form.get(nameProperty).setValue(value);
+        }
     }
 
     displayFn(item?: any): string | undefined {
@@ -161,7 +155,7 @@ export class CreateWorkerComponent implements OnInit {
 
     upload() {
         const files = this.file.nativeElement.files;
-        if (files.length) {
+        if (files && files.length) {
             let file = files[0];
             this.isUploaded = true;
             this.loaderImage = true;
@@ -174,5 +168,13 @@ export class CreateWorkerComponent implements OnInit {
     }
     getSanitizaUrl(property) {
         return `url('${property.value}')`;
+    }
+    save(user): void {
+
+        let users: any = JSON.parse(window.localStorage.getItem('users')) || [];
+        users.push(user);
+
+        window.localStorage.setItem('users', JSON.stringify(users));
+
     }
 }

@@ -14,6 +14,9 @@ import { DialogAddRecommeneddComponent } from '../dialog-add-recommenedd/dialog-
 
 import RecommendadoService from '@app/core/services/recomendados.service';
 import { finalize } from 'rxjs/operators';
+import RecommendedUserBuilder from '@app/core/models/model.recommendUserBuilder';
+import { District, Job } from '@app/core/models';
+import RecommendedUser from '@app/core/models/model.recommendedUser';
 
 
 @Component({
@@ -23,7 +26,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class ProfileWorkerComponent implements OnInit {
 
-    Worker: Recommended;
+    Worker: RecommendedUser;
     loader: boolean = true;
     phone: string;
     comments: any[] = [];
@@ -57,8 +60,24 @@ export class ProfileWorkerComponent implements OnInit {
         this.loader = true;
         this.recomendadoService.getRecomendadById(id)
             .pipe(finalize(() => this.loader = false))
-            .subscribe(response => {
-                this.Worker = response;
+            .subscribe((user: any) => {
+
+                const userBuilder: RecommendedUserBuilder = new RecommendedUserBuilder();
+                const district = new District(user.distrito.id, user.distrito.nombre);
+                const job = new Job(user.oficio.id, user.oficio.nombre);
+
+                const userRecomendado: RecommendedUser = userBuilder.setId(user.id)
+                    .setFirstName(user.nombres)
+                    .setLastName(user.apellidos)
+                    .setPhone(user.telefono)
+                    .setDistrict(district)
+                    .setAddress(user.direccion)
+                    .setDescription(user.descripcion)
+                    .setPicture(user.foto)
+                    .setOffice(job)
+                    .build();
+
+                this.Worker = userRecomendado;
             })
     }
 

@@ -6,6 +6,9 @@ import { JobsService } from '@app/core/services/jobs.service';
 import { DistrictService } from '@app/core/services';
 import { map, distinct, concatMap, pluck, toArray, finalize } from 'rxjs/operators';
 import RecommendadoService from '@app/core/services/recomendados.service';
+import RecommendedUserBuilder from '@app/core/models/model.recommendUserBuilder';
+import RecommendedUser from '@app/core/models/model.recommendedUser';
+import { District, Job } from '@app/core/models';
 
 @Component({
     selector: 'app-recommended-worker',
@@ -53,26 +56,38 @@ export class RecommendedWorkersComponent implements OnInit {
 
 
     private findAll(filter?): void {
+
         this.haverWorkers = false;
         this.listRecommendeds = [{}, {}, {}];
+
         this.recomendadoService.getRecomendados()
             .pipe(finalize(() => this.loader = false))
             .subscribe(response => {
-                this.allRecommendeds = response;
+
+                const usersRecommend = response.map(user => {
+                    // console.log(user);
+                    const userBuilder: RecommendedUserBuilder = new RecommendedUserBuilder();
+                    const district = new District(user.distrito.id, user.distrito.nombre);
+                    const job = new Job(user.oficio.id, user.oficio.nombre);
+
+                    const userRecomendado: RecommendedUser = userBuilder.setId(user.id)
+                        .setFirstName(user.nombres)
+                        .setLastName(user.apellidos)
+                        .setPhone(user.telefono)
+                        .setDistrict(district)
+                        .setAddress(user.direccion)
+                        .setDescription(user.descripcion)
+                        .setPicture(user.foto)
+                        .setOffice(job)
+                        .build();
+                    return userRecomendado;
+                });
+
+                console.log(usersRecommend);
+
+                this.allRecommendeds = usersRecommend;
                 this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
-                // if (!response.length) {
-                //     this.haverWorkers = true;
-                // }
             })
-        // this.recommendeService.findAll(filter)
-        // .pipe(finalize(() => this.loader = false))
-        // .subscribe(list => {
-        //     this.allRecommendeds = list.reverse();
-        //     this.listRecommendeds = this.arrayByPaginate(0, this.sizePage);
-        //     if (!list.length) {
-        //         this.haverWorkers = true;
-        //     }
-        // })
     };
 
 
@@ -153,6 +168,7 @@ export class RecommendedWorkersComponent implements OnInit {
 
     onSearch() {
         const query = this.buildQueryParamsRequest();
+        console.log(query);
         this.findAll(query);
     }
 

@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <form [formGroup]="form" (ngSubmit)="newRecommended()" novalidate>
             <div class="wk-input wk-input--xl" [ngClass]="{'wk-input--error': controlInput(form.controls['nombres'])}">
                 <mat-icon>label</mat-icon>
                 <input type="text" placeholder="Nombres" formControlName="nombres">

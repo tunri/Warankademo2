@@ -14,12 +14,12 @@
                 <div class="f-f view-profile__info">
                     <div>
                         <h2>{{Worker.nombres + ' ' + Worker.apellidos}}</h2>
-                        <span class="wk-tag">{{Worker.oficio}}</span>
+                        <span class="wk-tag">{{Worker.oficio.nombre}}</span>
                     </div>
                     <div class="view-profile__location">
                         <div class="text-icon address mrg-l0">
                             <mat-icon>location_on</mat-icon>
-                            <span>{{Worker.direccion}}, {{Worker.distrito && Worker.distrito.nombre || '-'}}</span>
+                            <span>{{Worker.direccion}}, {{Worker.distrito.nombre || '-'}}</span>
                         </div>
                         <div class="list-alienated">
                             <p class="text-icon mrg-l0">

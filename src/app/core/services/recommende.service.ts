@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { Observable, of } from 'rxjs';
 import { Recommended } from '@app/core/models/model.recommended';
 import { mockDataRecommended } from '../mock/recommended.mock';
+import { Job } from '../models';
 
 
 @Injectable({
@@ -19,7 +20,7 @@ export class RecommendeService {
 
     findAll(query: string): Observable<Recommended[]> {
         // return this.apiService.get(`/recomendado${query}`);
-        const recommended = mockDataRecommended.map(item => new Recommended(item.id, item.nombres, item.apellidos, item.telefono, item.descripcion, item.foto, item.oficio));
+        const recommended = mockDataRecommended.map(item => new Recommended(item.id, item.nombres, item.apellidos, item.telefono, item.descripcion, item.foto, new Job(item.oficio.id, item.oficio.nombre)));
         return of(recommended)
     }
 

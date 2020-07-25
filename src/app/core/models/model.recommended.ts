@@ -4,6 +4,8 @@
 // import {Job} from './model.job';
 // import {District} from '@app/core/models/district.model';
 
+import { Job } from "./model.job";
+
 
 export class Recommended {
 
@@ -13,7 +15,7 @@ export class Recommended {
     private telefono: string;
     private descripcion: string;
     private foto: string;
-    private oficio: string;
+    private oficio: Job;
 
     /**
      * @param id
@@ -24,7 +26,7 @@ export class Recommended {
      * @param foto
      * @param oficio
      */
-    constructor(id: number, nombres: string, apellidos: string, telefono: string, descripcion: string, foto: string, oficio: string) {
+    constructor(id: number, nombres: string, apellidos: string, telefono: string, descripcion: string, foto: string, oficio: Job) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -83,11 +85,11 @@ export class Recommended {
         return this.foto;
     }
 
-    setOficio(oficio: string): void {
+    setOficio(oficio: Job): void {
         this.oficio = oficio;
     }
 
-    getOficio(): string {
+    getOficio(): Job {
         return this.oficio;
     }
 
