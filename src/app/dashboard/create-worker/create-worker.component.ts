@@ -7,6 +7,7 @@ import RecomendadoService from '@app/core/services/recomendados.service';
 import RecommendedUser from '@app/core/models/model.recommendedUser';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import RecommendedUserBuilder from '@app/core/models/model.recommendUserBuilder';
 
 @Component({
     selector: 'app-create-worker',
@@ -53,31 +54,30 @@ export class CreateWorkerComponent implements OnInit {
 
     buildForm() {
         this.form = this.fb.group({
-            nombres: ['', Validators.required],
-            apellidos: ['', Validators.required],
-            telefono: ['', Validators.compose([Validators.required, Validators.pattern(this.regexStr)])],
-            direccion: ['', Validators.required],
-            oficio: ['', Validators.required],
-            distrito: ['', Validators.required],
-            descripcion: ['', Validators.required],
-            oficio_id: ['', Validators.required],
-            distrito_id: ['', Validators.required],
+            nombres: [''],
+            apellidos: [''],
+            telefono: ['', Validators.compose([, Validators.pattern(this.regexStr)])],
+            direccion: [''],
+            oficio: [''],
+            distrito: [''],
+            descripcion: [''],
+            oficio_id: [''],
+            distrito_id: [''],
             usuario_perfil_id: [1],
             foto: ['']
         });
     }
 
     onSubmit(): void {
-        console.log(this.form.value);
         this.submitted = true;
         this.errorAuth = false;
         // if (this.form.valid) {
-            this.loader = true;
-            const { nombres, apellidos, telefono, distrito, direccion, officio, descripcion, foto } = this.form.value;
+        // this.loader = true;
+        const { nombres, apellidos, telefono, distrito, direccion, officio, descripcion, foto } = this.form.value;
 
-            // USO DE BUILDER
-            const recomendado = new RecommendedUser()
-            .setFirstName(nombres)
+        // USO DE BUILDER
+        const userBuilder: RecommendedUserBuilder = new RecommendedUserBuilder()
+        const userRecomendado: RecommendedUser = userBuilder.setFirstName(nombres)
             .setLastName(apellidos)
             .setPhone(telefono)
             .setDistrict(distrito.nombre)
@@ -87,25 +87,27 @@ export class CreateWorkerComponent implements OnInit {
             .setOffice(officio)
             .build();
 
-            console.log(recomendado);
-            // this.orders.push(recomendado);
-            // delete body.distrito;
-            // delete body.oficio;
-            // //body.foto = 'incoming';
-            // this.recommendedService.create(body).subscribe(success => {
-            //     this.snackBar.open('Recomendado Creado!!', '', {
-            //         duration: 2000,
-            //     });
-            //     this.router.navigateByUrl('/recommended-workers');
-            //     this.loader = false;
-            // }, (error) => {
-            //     if (error.status === 400) {
-            //         this.errorAuth = true;
-            //     } else {
-            //         alert('Oops!, Ha ocurrido un error, intentelo en otro momento');
-            //     }
-            //     this.loader = false;
-            // });
+        console.log(userRecomendado);
+
+
+        // this.orders.push(recomendado);
+        // delete body.distrito;
+        // delete body.oficio;
+        // //body.foto = 'incoming';
+        // this.recommendedService.create(body).subscribe(success => {
+        //     this.snackBar.open('Recomendado Creado!!', '', {
+        //         duration: 2000,
+        //     });
+        //     this.router.navigateByUrl('/recommended-workers');
+        //     this.loader = false;
+        // }, (error) => {
+        //     if (error.status === 400) {
+        //         this.errorAuth = true;
+        //     } else {
+        //         alert('Oops!, Ha ocurrido un error, intentelo en otro momento');
+        //     }
+        //     this.loader = false;
+        // });
         // }
     }
 
@@ -123,29 +125,33 @@ export class CreateWorkerComponent implements OnInit {
     private filter(name: string, list: Array<Job | District>): Array<Job | District> {
         return list.filter(item => item.getNombre().toLowerCase().indexOf(name.toLowerCase()) > -1);
     }
-    onChange(newValue: any | Job, list: Array<Job | District>, listFilter: string) {
+    onChange(newValue: any | District | Job, list: Array<Job | District>, listFilter: string) {
+
         let value = undefined;
-        console.log(newValue, list, listFilter);
         let nameProperty = (listFilter === 'filterDistricts') ? 'distrito_id' : 'oficio_id';
+
         if (typeof newValue === 'object') {
-            value = newValue[nameProperty];
-            newValue = newValue.nombre
+            value = newValue.getId();
+            newValue = newValue.getNombre()
         }
+
         this[listFilter] = this.filter(newValue, list);
         //update property
         this.form.get(nameProperty).setValue(value);
     }
+
     displayFn(item?: any): string | undefined {
         return item ? item.nombre : undefined;
     }
     selectedJob(item: any) {
         this.form.patchValue({
-            oficio_id: item.option.value.oficio_id
+            oficio_id: item.option.value.id
         })
     }
     selectedDistrict(item: any) {
+        const _district: District = item.option.value;
         this.form.patchValue({
-            distrito_id: item.option.value.distrito_id
+            distrito_id: _district.getId()
         })
     }
 

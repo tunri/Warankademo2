@@ -1,79 +1,81 @@
+import IBuilder from "../interfaces/IBuilder";
 
 export default class RecommendedUser {
-  private id: number;
-  private nombres: string;
-  private apellidos: string;
-  private telefono: string;
-  private distrito: string;
-  private direccion: string;
-  private descripcion: string;
-  private foto: string;
-  private oficio: string;
 
-  constructor() {
-    this.id = Math.floor(Math.random() * 1000);
-    this.nombres = '';
-    this.apellidos = '';
-    this.telefono = '';
-    this.distrito = '';
-    this.direccion = '';
-    this.oficio = '';
-    this.descripcion = '';
-    this.foto = '';
-  }
+    private _id: number;
+    private _nombres: string;
+    private _apellidos: string;
+    private _telefono: string;
+    private _distrito: string;
+    private _direccion: string;
+    private _descripcion: string;
+    private _foto: string;
+    private _oficio: string;
 
-  setFirstName(nombres: string) {
-    this.nombres = nombres;
-    return this;
-  }
 
-  setLastName(apellidos: string) {
-    this.apellidos = apellidos;
-    return this;
-  }
+    constructor() { }
 
-  setPhone(telefono: string) {
-    this.telefono = telefono;
-    return this;
-  }
-
-  setDistrict(distrito: string) {
-    this.distrito = distrito;
-    return this;
-  }
-
-  setAddress(direccion: string) {
-    this.direccion = direccion;
-    return this;
-  }
-
-  setDescription(descripcion: string) {
-    this.descripcion = descripcion;
-    return this;
-  }
-
-  setPicture(foto: string) {
-    this.foto = foto;
-    return this;
-  }
-
-  setOffice(oficio: string) {
-    this.oficio = oficio;
-    return this;
-  }
-
-  build(): any {
-    return {
-      id: this.id,
-      nombres: this.nombres,
-      apellidos: this.apellidos,
-      telefono: this.telefono,
-      descripcion: this.descripcion,
-      distrito: this.distrito,
-      direccion: this.direccion,
-      foto: this.foto,
-      oficio: this.oficio
+    public get id(): number {
+        return this._id;
     }
-  }
+    public set id(value: number) {
+        this._id = value;
+    }
+
+    public get nombres(): string {
+        return this._nombres;
+    }
+    public set nombres(value: string) {
+        this._nombres = value;
+    }
+
+    public get apellidos(): string {
+        return this._apellidos;
+    }
+    public set apellidos(value: string) {
+        this._apellidos = value;
+    }
+
+    public get telefono(): string {
+        return this._telefono;
+    }
+    public set telefono(value: string) {
+        this._telefono = value;
+    }
+
+    public get distrito(): string {
+        return this._distrito;
+    }
+    public set distrito(value: string) {
+        this._distrito = value;
+    }
+
+    public get direccion(): string {
+        return this._direccion;
+    }
+    public set direccion(value: string) {
+        this._direccion = value;
+    }
+
+    public get oficio(): string {
+        return this._oficio;
+    }
+    public set oficio(value: string) {
+        this._oficio = value;
+    }
+
+    public get descripcion(): string {
+        return this._descripcion;
+    }
+    public set descripcion(value: string) {
+        this._descripcion = value;
+    }
+
+    public get foto(): string {
+        return this._foto;
+    }
+    public set foto(value: string) {
+        this._foto = value;
+    }
 
 }

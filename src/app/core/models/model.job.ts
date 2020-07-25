@@ -6,8 +6,6 @@ export class Job {
     // categoria_id?: number;
     private id: number;
     private nombre: string;
-    // descripcion?: string;
-    // categorium?: object;
 
     constructor(id: number, nombre: string) {
         this.id = id;
