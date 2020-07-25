@@ -3,17 +3,17 @@ import { Recommended } from "../models/model.recommended";
 import { Observable, of } from "rxjs";
 
 // Singleton para service
-class RecommendadoService {
+class RecomendadoService {
 
-    private static instance: RecommendadoService;
+    private static instance: RecomendadoService;
 
 
-    public static getInstance(): RecommendadoService {
-        if (!RecommendadoService.instance) {
-            RecommendadoService.instance = new RecommendadoService();
+    public static getInstance(): RecomendadoService {
+        if (!RecomendadoService.instance) {
+            RecomendadoService.instance = new RecomendadoService();
         }
 
-        return RecommendadoService.instance;
+        return RecomendadoService.instance;
     }
 
 
@@ -33,4 +33,4 @@ class RecommendadoService {
 
 };
 
-export default RecommendadoService;
+export default RecomendadoService;

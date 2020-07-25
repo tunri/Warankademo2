@@ -90,7 +90,7 @@
             </div>
             <div class="f-layout f-jc f-ai">
                 <span></span>
-                <button mat-raised-button class="mv-button mv-primary btn-create" type="submit" [disabled]="loader || !form.valid">
+                <button mat-raised-button class="mv-button mv-primary btn-create" type="submit" [disabled]="loader">
                     <span *ngIf="!loader">crear</span>
                     <span *ngIf="loader" class="freeway-spinner align-middle"></span>
                 </button>

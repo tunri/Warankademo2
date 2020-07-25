@@ -3,7 +3,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CommonsService, DistrictService } from '@app/core/services';
 import { JobsService } from '@app/core/services/jobs.service';
 import { Job, District } from '@app/core/models';
-import { RecommendeService } from '@app/core/services/recommende.service';
+import RecomendadoService from '@app/core/services/recomendados.service';
+import RecommendedUser from '@app/core/models/model.recommendedUser';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
@@ -38,7 +39,7 @@ export class CreateWorkerComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private commonService: CommonsService,
-        private recommendedService: RecommendeService,
+        // private recommendedService: RecomendadoService,
         private router: Router,
         public snackBar: MatSnackBar
     ) {
@@ -67,29 +68,45 @@ export class CreateWorkerComponent implements OnInit {
     }
 
     onSubmit(): void {
+        console.log(this.form.value);
         this.submitted = true;
         this.errorAuth = false;
-        if (this.form.valid) {
+        // if (this.form.valid) {
             this.loader = true;
-            let body = this.form.value;
-            delete body.distrito;
-            delete body.oficio;
-            //body.foto = 'incoming';
-            this.recommendedService.create(body).subscribe(success => {
-                this.snackBar.open('Recomendado Creado!!', '', {
-                    duration: 2000,
-                });
-                this.router.navigateByUrl('/recommended-workers');
-                this.loader = false;
-            }, (error) => {
-                if (error.status === 400) {
-                    this.errorAuth = true;
-                } else {
-                    alert('Oops!, Ha ocurrido un error, intentelo en otro momento');
-                }
-                this.loader = false;
-            });
-        }
+            const { nombres, apellidos, telefono, distrito, direccion, officio, descripcion, foto } = this.form.value;
+
+            // USO DE BUILDER
+            const recomendado = new RecommendedUser()
+            .setFirstName(nombres)
+            .setLastName(apellidos)
+            .setPhone(telefono)
+            .setDistrict(distrito.nombre)
+            .setAddress(direccion)
+            .setDescription(descripcion)
+            .setPicture(foto)
+            .setOffice(officio)
+            .build();
+
+            console.log(recomendado);
+            // this.orders.push(recomendado);
+            // delete body.distrito;
+            // delete body.oficio;
+            // //body.foto = 'incoming';
+            // this.recommendedService.create(body).subscribe(success => {
+            //     this.snackBar.open('Recomendado Creado!!', '', {
+            //         duration: 2000,
+            //     });
+            //     this.router.navigateByUrl('/recommended-workers');
+            //     this.loader = false;
+            // }, (error) => {
+            //     if (error.status === 400) {
+            //         this.errorAuth = true;
+            //     } else {
+            //         alert('Oops!, Ha ocurrido un error, intentelo en otro momento');
+            //     }
+            //     this.loader = false;
+            // });
+        // }
     }
 
     controlInput(input) {
@@ -108,6 +125,7 @@ export class CreateWorkerComponent implements OnInit {
     }
     onChange(newValue: any | Job, list: Array<Job | District>, listFilter: string) {
         let value = undefined;
+        console.log(newValue, list, listFilter);
         let nameProperty = (listFilter === 'filterDistricts') ? 'distrito_id' : 'oficio_id';
         if (typeof newValue === 'object') {
             value = newValue[nameProperty];
